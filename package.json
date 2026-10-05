@@ -1,7 +1,7 @@
 {
   "name": "bgiem-school-program",
   "private": true,
-  "description": "Course module for the BGIEM AI workshop in schools",
+  "description": "Course curriculum for the BGIEM AI workshop in schools",
   "scripts": {
     "build": "node scripts/build-pdf.js"
   },
