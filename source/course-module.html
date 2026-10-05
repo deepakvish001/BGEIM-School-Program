@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Awareness &amp; Hands-on Workshop for School Students – Course Module | BGIEM</title>
+<style>
+  @font-face { font-family: "Source Sans 3"; font-weight: 400; font-style: normal; src: url("../assets/fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Sans 3"; font-weight: 400; font-style: italic; src: url("../assets/fonts/source-sans-3-latin-400-italic.woff2") format("woff2"); }
+  @font-face { font-family: "Source Sans 3"; font-weight: 600; font-style: normal; src: url("../assets/fonts/source-sans-3-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Sans 3"; font-weight: 700; font-style: normal; src: url("../assets/fonts/source-sans-3-latin-700-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 600; font-style: normal; src: url("../assets/fonts/source-serif-4-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 700; font-style: normal; src: url("../assets/fonts/source-serif-4-latin-700-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Noto Sans Devanagari"; font-weight: 400; src: url("../assets/fonts/noto-sans-devanagari-devanagari-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Noto Sans Devanagari"; font-weight: 600; src: url("../assets/fonts/noto-sans-devanagari-devanagari-600-normal.woff2") format("woff2"); }
+
+  :root {
+    --red: #E31E24;        /* sampled from the BGIEM logo */
+    --red-dark: #B5161C;
+    --red-tint: #FDF0F0;
+    --ink: #1E2227;
+    --muted: #5A626C;
+    --rule: #E3DED8;
+    --panel: #F7F5F2;
+  }
+
+  @page {
+    size: A4;
+    margin: 24mm 18mm 20mm 18mm;
+    @top-left {
+      content: "";
+      width: 30mm;
+      background: url("../assets/bgiem-logo.png") left 60% / auto 11mm no-repeat;
+    }
+    @top-right {
+      content: "AI Workshop for School Students  |  Course Module";
+      font: 600 8pt "Source Sans 3", sans-serif;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      vertical-align: bottom;
+      padding-bottom: 4.2mm;
+    }
+    @bottom-left {
+      content: "Baderia Global Institute of Engineering & Management, Jabalpur";
+      font: 8pt "Source Sans 3", sans-serif;
+      color: var(--muted);
+      vertical-align: top;
+      padding-top: 5mm;
+    }
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font: 600 8pt "Source Sans 3", sans-serif;
+      color: var(--muted);
+      vertical-align: top;
+      padding-top: 5mm;
+    }
+  }
+  @page :first {
+    margin: 0;
+    @top-left { content: none; background: none; }
+    @top-right { content: none; }
+    @bottom-left { content: none; }
+    @bottom-right { content: none; }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--ink);
+    font-family: "Source Sans 3", "Noto Sans Devanagari", "DejaVu Sans", sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+  .hi { font-family: "Source Sans 3", "Noto Sans Devanagari", sans-serif; }
+
+  h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; font-weight: 700; color: var(--ink); margin: 0; }
+  p { margin: 0 0 2.6mm; }
+  ul, ol { margin: 0 0 2.6mm; padding-left: 5mm; }
+  li { margin-bottom: 1.1mm; }
+  li::marker { color: var(--red); }
+  b, strong { font-weight: 600; }
+
+  /* ---------- Cover ---------- */
+  .cover {
+    width: 210mm; height: 296mm;
+    position: relative; overflow: hidden;
+    break-after: page;
+  }
+  .cover-band {
+    background: var(--red);
+    height: 94mm;
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 3mm solid var(--red-dark);
+  }
+  .cover-band img { width: 112mm; display: block; }
+  .cover-body { padding: 12mm 22mm 0; }
+  .eyebrow {
+    font-size: 9pt; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 4mm;
+  }
+  .cover h1 { font-size: 27pt; line-height: 1.15; margin-bottom: 3mm; }
+  .cover .doc-type {
+    font-size: 13pt; font-weight: 600; color: var(--muted); margin-bottom: 5mm;
+  }
+  .cover .lede { font-size: 11pt; color: var(--muted); max-width: 150mm; margin-bottom: 6mm; }
+  .cover-meta { width: 100%; border-collapse: collapse; font-size: 10.5pt; }
+  .cover-meta td { padding: 1.9mm 0; border-top: 0.3mm solid var(--rule); vertical-align: top; }
+  .cover-meta tr:last-child td { border-bottom: 0.3mm solid var(--rule); }
+  .cover-meta td:first-child {
+    width: 46mm; color: var(--muted); font-size: 8.5pt; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; padding-top: 2.4mm;
+  }
+  .chips { margin-top: 5mm; display: flex; flex-wrap: wrap; gap: 2mm; }
+  .chip {
+    font-size: 8.5pt; font-weight: 600; color: var(--red-dark);
+    background: var(--red-tint); border: 0.3mm solid #F4C9CA;
+    border-radius: 10mm; padding: 0.8mm 3.2mm;
+  }
+  .cover-foot {
+    position: absolute; left: 22mm; right: 22mm; bottom: 12mm;
+    border-top: 0.8mm solid var(--red); padding-top: 3mm;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    font-size: 9pt; color: var(--muted);
+  }
+  .cover-foot strong { color: var(--ink); display: block; font-size: 10pt; }
+
+  /* ---------- Body ---------- */
+  h2 {
+    font-size: 15pt; margin: 6mm 0 2.6mm; padding-bottom: 1.4mm;
+    border-bottom: 0.5mm solid var(--red);
+    break-after: avoid;
+  }
+  h2 .num { color: var(--red); margin-right: 2.5mm; }
+  h2:first-child { margin-top: 0; }
+  .page-break { break-before: page; }
+  .keep { break-inside: avoid; }
+  h4 {
+    font-size: 8.5pt; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--red-dark); margin: 3mm 0 1.4mm; break-after: avoid;
+  }
+
+  table.grid { width: 100%; border-collapse: collapse; font-size: 9.8pt; margin-bottom: 3mm; }
+  table.grid th {
+    background: var(--ink); color: #fff; text-align: left; font-weight: 600;
+    font-size: 8.8pt; letter-spacing: 0.03em; padding: 2mm 2.4mm;
+  }
+  table.grid td { padding: 1.7mm 2.4mm; border-bottom: 0.3mm solid var(--rule); vertical-align: top; }
+  table.grid tr { break-inside: avoid; }
+  table.grid tbody tr:nth-child(even) td { background: var(--panel); }
+  table.kv td:first-child { width: 44mm; font-weight: 600; color: var(--ink); }
+  td.time { white-space: nowrap; font-weight: 600; color: var(--red-dark); }
+  td.mins { white-space: nowrap; text-align: center; }
+  tr.total td { font-weight: 700; background: var(--red-tint) !important; border-bottom: none; }
+
+  .approach { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 1mm 0 3mm; }
+  .approach div { background: var(--panel); border-top: 1mm solid var(--red); padding: 2.6mm 3mm; font-size: 9.5pt; }
+  .approach b { display: block; font-family: "Source Serif 4", serif; font-size: 11pt; margin-bottom: 0.8mm; }
+
+  /* Module blocks */
+  .module { margin: 0 0 6mm; }
+  .mod-head {
+    display: flex; align-items: stretch; break-after: avoid; break-inside: avoid;
+    border: 0.3mm solid var(--rule); border-left: 2.2mm solid var(--red);
+    background: var(--panel);
+  }
+  .mod-title { flex: 1; padding: 2.4mm 3.5mm; }
+  .mod-no { font-size: 8pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); }
+  .mod-title h3 { font-size: 13pt; line-height: 1.25; }
+  .mod-time {
+    width: 34mm; background: var(--ink); color: #fff; text-align: center;
+    display: flex; flex-direction: column; justify-content: center; padding: 1.5mm;
+  }
+  .mod-time .d { font-family: "Source Serif 4", serif; font-size: 13pt; font-weight: 700; line-height: 1.1; }
+  .mod-time .t { font-size: 8pt; opacity: 0.8; letter-spacing: 0.03em; }
+  .mod-body { padding: 0.5mm 1mm 0 3.5mm; }
+  .mod-body ul li { break-inside: avoid; }
+  .outcome {
+    background: var(--red-tint); border-left: 1mm solid var(--red);
+    padding: 2mm 3mm; margin-top: 2.4mm; font-size: 10pt; break-inside: avoid;
+  }
+  .outcome b { color: var(--red-dark); }
+  .note { font-size: 9.5pt; color: var(--muted); font-style: italic; margin-top: 1.6mm; }
+
+  .rules { counter-reset: r; list-style: none; padding-left: 0; }
+  .rules li { counter-increment: r; position: relative; padding-left: 7mm; }
+  .rules li::before {
+    content: counter(r); position: absolute; left: 0; top: 0.4mm;
+    width: 4.6mm; height: 4.6mm; border-radius: 50%;
+    background: var(--red); color: #fff; font-size: 7.5pt; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .two-col { columns: 2; column-gap: 8mm; }
+  .two-col li { break-inside: avoid; }
+
+  /* Sign-off */
+  .signoff { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8mm; margin-top: 16mm; break-inside: avoid; }
+  .signoff div { border-top: 0.4mm solid var(--ink); padding-top: 2mm; font-size: 9.5pt; }
+  .signoff .role { font-size: 8pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.6mm; }
+  .signoff b { display: block; }
+
+  /* Annexures */
+  .prompt { break-inside: avoid; margin-bottom: 2.2mm; }
+  .prompt .label { font-weight: 600; font-size: 9.6pt; }
+  .prompt .label span { color: var(--red-dark); font-weight: 700; }
+  .prompt blockquote {
+    margin: 0.8mm 0 0; padding: 1.5mm 3.2mm; background: var(--panel);
+    border-left: 0.8mm solid #C9C2BA; font-size: 9.6pt; line-height: 1.45;
+  }
+  .quiz { padding-left: 6mm; }
+  .quiz > li { break-inside: avoid; margin-bottom: 2.6mm; }
+  .quiz .opts { display: grid; grid-template-columns: 1fr 1fr; column-gap: 6mm; color: var(--ink); font-size: 9.8pt; margin-top: 0.6mm; }
+  .answer-key { background: var(--panel); padding: 2.6mm 3.5mm; font-size: 9.8pt; margin-top: 4mm; border-left: 1mm solid var(--ink); }
+  .small { font-size: 9.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- =================== COVER =================== -->
+<section class="cover">
+  <div class="cover-band"><img src="../assets/bgiem-logo.png" alt="Baderia Global Institute of Engineering &amp; Management"></div>
+  <div class="cover-body">
+    <div class="eyebrow">School Outreach Programme &nbsp;·&nbsp; 2026–27</div>
+    <h1>AI Awareness &amp; Hands-on Workshop for School Students</h1>
+    <div class="doc-type">Course Module and Session Plan</div>
+    <p class="lede">A two-hour session that explains what Artificial Intelligence is, how it is changing the way we study and work, and how students can use AI tools in a smart, safe and honest way.</p>
+
+    <table class="cover-meta">
+      <tr><td>Duration</td><td>2 hours (120 minutes), single session</td></tr>
+      <tr><td>Target group</td><td>Students of Class 8 to Class 12</td></tr>
+      <tr><td>Structure</td><td>Opening session + 9 modules</td></tr>
+      <tr><td>Mode of delivery</td><td>Live demonstration, guided activities, quiz and Q&amp;A (English and Hindi)</td></tr>
+      <tr><td>Prepared by</td><td>Mr. Deepak Vishwakarma, Trainer</td></tr>
+      <tr><td>Submitted to</td><td>Dr. Niharika Yadav, Deputy Director</td></tr>
+      <tr><td>Date of submission</td><td>5 October 2026</td></tr>
+    </table>
+
+    <div class="chips">
+      <span class="chip">Gemini</span><span class="chip">Gemma</span><span class="chip">NotebookLM</span>
+      <span class="chip">Nano Banana</span><span class="chip">Google Flow</span><span class="chip">Lovable</span>
+      <span class="chip">Google Workspace Studio</span>
+    </div>
+  </div>
+  <div class="cover-foot">
+    <div><strong>Baderia Global Institute of Engineering &amp; Management</strong>Global Square, Patan Bypass, Raigwan, Jabalpur (M.P.)</div>
+    <div>For internal record and coordination</div>
+  </div>
+</section>
+
+<!-- =================== 1–4 =================== -->
+<h2><span class="num">1.</span>About the Programme</h2>
+<p>Baderia Global Institute of Engineering &amp; Management (BGIEM), Jabalpur, conducts this workshop in schools as part of its outreach activities. Most school students have already used an AI app in some form, very often for homework. Very few of them, however, have been shown how these tools actually work, where they make mistakes, and how they can be used for real learning instead of just copying answers. This session is planned to fill that gap.</p>
+<p>The workshop is kept practical. Every idea is followed by a live demonstration on the projector, and students take part by suggesting prompts, voting in quick polls and doing small activities. The tools have been chosen because they are either free or widely used, and because each one connects to something students already do: Gemini and Gemma for asking questions, NotebookLM for studying from the textbook, Nano Banana for posters and presentations, Google Flow for video, Lovable for building apps, and Google Workspace Studio for automation. Safe and responsible use is discussed inside every module and not left only for the end.</p>
+
+<h2><span class="num">2.</span>Objectives</h2>
+<ul>
+  <li>To build a basic understanding of Artificial Intelligence among school students in simple, non-technical language.</li>
+  <li>To make students aware of the impact of AI on education, health, agriculture, jobs and society, including its risks.</li>
+  <li>To show, through live demonstrations, how AI tools can support studies, creative work and everyday tasks.</li>
+  <li>To develop the habit of using AI responsibly: checking facts, protecting personal information and staying honest in school work.</li>
+  <li>To introduce students to the growing career opportunities in AI, computer science and technology.</li>
+</ul>
+
+<h2><span class="num">3.</span>Programme at a Glance</h2>
+<table class="grid kv">
+  <tbody>
+    <tr><td>Programme name</td><td>AI Awareness &amp; Hands-on Workshop for School Students</td></tr>
+    <tr><td>Target group</td><td>Students of Class 8 to 12 (examples and depth are adjusted to the class level)</td></tr>
+    <tr><td>Duration</td><td>2 hours (120 minutes) in a single session</td></tr>
+    <tr><td>Structure</td><td>Opening session followed by 9 modules (see Section 4)</td></tr>
+    <tr><td>Recommended group size</td><td>60 to 120 students per session; larger groups are taken in two batches</td></tr>
+    <tr><td>Mode</td><td>Live demonstration on projector, guided activities, quiz, and question-answer</td></tr>
+    <tr><td>Medium of instruction</td><td>English, with explanation in Hindi wherever needed</td></tr>
+    <tr><td>Tools covered</td><td>Gemini, Gemma, NotebookLM, Nano Banana, Google Flow, Lovable, Google Workspace Studio</td></tr>
+    <tr><td>Assessment</td><td>Activities within modules, 10-question end-of-session quiz, and feedback form</td></tr>
+  </tbody>
+</table>
+
+<!-- =================== 5. Session plan =================== -->
+<h2><span class="num">4.</span>Session Plan (120 Minutes)</h2>
+<table class="grid">
+  <thead>
+    <tr><th style="width:24mm">Time</th><th>Module and main content</th><th style="width:15mm">Min.</th><th style="width:38mm">Method</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="time">00:00 – 00:10</td><td><b>Opening Session: Welcome and “Real or AI?”</b><br>Introduction, quick poll, game on spotting AI-made images and videos</td><td class="mins">10</td><td>Interaction, game</td></tr>
+    <tr><td class="time">00:10 – 00:25</td><td><b>Module 1: What is Artificial Intelligence?</b><br>AI, Machine Learning, Generative AI, how machines learn, AI in daily life</td><td class="mins">15</td><td>Talk with examples, activity</td></tr>
+    <tr><td class="time">00:25 – 00:35</td><td><b>Module 2: Impact of AI on Our Lives and Careers</b><br>Education, health, farming, jobs, risks such as deepfakes and bias</td><td class="mins">10</td><td>Discussion, thumbs poll</td></tr>
+    <tr><td class="time">00:35 – 00:50</td><td><b>Module 3: Talking to AI with Gemini, and Meeting Gemma</b><br>Prompting with the R-T-C-F method, follow-up prompts, offline AI with Gemma</td><td class="mins">15</td><td>Live demo, pair activity</td></tr>
+    <tr><td class="time">00:50 – 01:05</td><td><b>Module 4: NotebookLM as an AI Study Partner</b><br>Textbook chapter to notes, flashcards, quiz, mind map and audio summary</td><td class="mins">15</td><td>Live demo, class quiz</td></tr>
+    <tr><td class="time">01:05 – 01:20</td><td><b>Module 5: Visuals and Presentations with Nano Banana and Gemini</b><br>Posters, image editing, slide decks, labelling AI-made images</td><td class="mins">15</td><td>Live demo, class prompt</td></tr>
+    <tr><td class="time">01:20 – 01:30</td><td><b>Module 6: AI Video Creation with Google Flow</b><br>Writing a video prompt, creating a clip, deepfake awareness</td><td class="mins">10</td><td>Trainer demo</td></tr>
+    <tr><td class="time">01:30 – 01:40</td><td><b>Module 7: Build an App Without Coding with Lovable</b><br>Idea to working quiz website, why logic and coding still matter</td><td class="mins">10</td><td>Trainer demo</td></tr>
+    <tr><td class="time">01:40 – 01:50</td><td><b>Module 8: Automation with Google Workspace Studio</b><br>Trigger, Steps, Result; AI agents for school tasks</td><td class="mins">10</td><td>Trainer demo, paper activity</td></tr>
+    <tr><td class="time">01:50 – 02:00</td><td><b>Module 9: Using AI Responsibly, Quiz and Closing</b><br>Five rules for students, cyber safety, quiz, Q&amp;A, feedback</td><td class="mins">10</td><td>Discussion, quiz</td></tr>
+    <tr class="total"><td></td><td>Total duration</td><td class="mins">120</td><td></td></tr>
+  </tbody>
+</table>
+<p class="small">Note: Times are counted from the start of the session. If the school timetable allows only 90 minutes, Module 2 is taken together with Module 1, Modules 6, 7 and 8 are shown as 5-minute walkthroughs each, and the quiz in Module 9 is done by show of hands.</p>
+
+<div class="keep">
+<h2><span class="num">5.</span>Teaching Approach</h2>
+<p>Every module follows the same simple pattern, so that students are never just listening for long stretches.</p>
+<div class="approach">
+  <div><b>Explain</b>The idea is explained in simple words with examples from the students’ daily life.</div>
+  <div><b>Show</b>The tool is used live on the projector, so students see real results, including mistakes.</div>
+  <div><b>Try</b>Students take part by giving prompts, voting, and doing short paper or pair activities.</div>
+  <div><b>Reflect</b>A quick discussion on where the tool helps, where it fails, and how to use it rightly.</div>
+</div>
+<p>Students do not need to bring a phone or laptop, and they do not need to create any account. All demonstrations run from the trainer’s laptop and accounts. If the school has a computer lab, students can also try Gemini and NotebookLM in small groups, as per the school’s IT policy.</p>
+</div>
+
+<!-- =================== 6. Modules =================== -->
+<h2><span class="num">6.</span>Module-wise Course Content</h2>
+
+<section class="module">
+  <div class="mod-head">
+    <div class="mod-title"><div class="mod-no">Opening Session</div><h3>Welcome and “Real or AI?”</h3></div>
+    <div class="mod-time"><span class="d">10 min</span><span class="t">00:00 – 00:10</span></div>
+  </div>
+  <div class="mod-body">
+    <h4>Topics covered</h4>
+    <ul>
+      <li>Welcome, introduction of the trainer and of Baderia Global Institute of Engineering &amp; Management.</li>
+      <li>Why this workshop matters: most of us already use AI every day, often without noticing it.</li>
+      <li>Quick hand-raise poll: Who has used ChatGPT or Gemini? Who has used it for homework? Who has seen a fake video online?</li>
+    </ul>
+    <h4>Student activity: “Real or AI?”</h4>
+    <p>Six pictures and two short video clips are shown on screen. For each one, students vote whether it is real or made by AI, and the answers are revealed at the end. The aim is to show how difficult it has become to tell the two apart, which sets up the rest of the session.</p>
+    <div class="outcome"><b>Outcome:</b> Students are curious and settled, and the trainer gets a rough idea of how much the class already knows about AI.</div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="mod-head">
+    <div class="mod-title"><div class="mod-no">Module 1</div><h3>What is Artificial Intelligence?</h3></div>
+    <div class="mod-time"><span class="d">15 min</span><span class="t">00:10 – 00:25</span></div>
+  </div>
+  <div class="mod-body">
+    <h4>Topics covered</h4>
+    <ul>
+      <li><b>AI in simple words:</b> computer systems that can do tasks which normally need human intelligence, such as recognising faces, understanding speech, making predictions and creating content.</li>
+      <li><b>How a machine learns:</b> a child learns what a mango is after seeing many mangoes. A computer learns in a similar way, from thousands of labelled examples. Data → Training → Model → Prediction.</li>
+      <li><b>The family of terms:</b> AI (the big umbrella), Machine Learning (learning from data), Deep Learning (learning through neural networks, loosely inspired by the brain) and Generative AI (AI that creates new text, images, music, code and video).</li>
+      <li><b>What a chatbot really does:</b> a Large Language Model such as the one behind Gemini or ChatGPT has been trained on a huge amount of text and predicts the most suitable next word, again and again. It does not “know” things the way we do.</li>
+      <li><b>AI around us:</b> YouTube and Instagram recommendations, traffic on Google Maps, face unlock, the spam filter in Gmail, Google Lens, voice typing in Hindi, and fraud alerts on UPI payments.</li>
+      <li><b>What AI cannot do well:</b> it can be confidently wrong (this is called <i>hallucination</i>), it has no real feelings or common sense, and it cannot take responsibility for its decisions.</li>
+    </ul>
+    <h4>Student activity: “Find the AI on your phone”</h4>
+    <p>Students name apps used at home that have AI inside them and say what the AI is doing in each one. The trainer groups the answers on the board under “recognising”, “recommending”, “predicting” and “creating”.</p>
+    <div class="outcome"><b>Outcome:</b> Students can explain AI, Machine Learning and Generative AI in their own words and can identify AI in the apps they use every day.</div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="mod-head">
+    <div class="mod-title"><div class="mod-no">Module 2</div><h3>Impact of AI on Our Lives and Careers</h3></div>
+    <div class="mod-time"><span class="d">10 min</span><span class="t">00:25 – 00:35</span></div>
+  </div>
+  <div class="mod-body">
+    <h4>Topics covered</h4>
+    <ul>
+      <li><b>Education:</b> personal tutoring, instant doubt solving, and learning material in Indian languages (for example, the Government of India’s Bhashini platform for translation).</li>
+      <li><b>Health:</b> AI helping doctors read X-rays and eye scans to detect disease early.</li>
+      <li><b>Agriculture:</b> mobile apps that identify crop disease from a photo of a leaf, and give farmers weather and market price information.</li>
+      <li><b>Work and careers:</b> some routine tasks will be done by AI, while new roles are growing, such as AI/ML engineer, data analyst, AI product designer and digital content creator. People who know their subject well and can also use AI will have a clear advantage.</li>
+      <li><b>The other side:</b> deepfakes and fake news, misuse of personal data, bias (AI learns from data, and unfair data gives unfair results), and the risk of depending on AI so much that we stop thinking for ourselves.</li>
+      <li><b>AI in India:</b> the Government of India’s IndiaAI Mission, and AI becoming part of school education (CBSE already offers Artificial Intelligence as a subject).</li>
+    </ul>
+    <h4>Student activity: “Thumbs up or thumbs down”</h4>
+    <p>The trainer reads out statements such as “AI will make teachers unnecessary” and “AI can help a farmer save a crop”. Students show thumbs up or down, and two or three of them explain their choice.</p>
+    <div class="outcome"><b>Outcome:</b> Students can discuss both the benefits and the risks of AI with examples, instead of seeing it as only good or only bad.</div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="mod-head">
+    <div class="mod-title"><div class="mod-no">Module 3</div><h3>Talking to AI with Gemini, and Meeting Gemma</h3></div>
+    <div class="mod-time"><span class="d">15 min</span><span class="t">00:35 – 00:50</span></div>
+  </div>
+  <div class="mod-body">
+    <h4>Topics covered</h4>
+    <ul>
+      <li><b>What a prompt is</b>, and why the quality of the answer depends on the quality of the question.</li>
+      <li><b>The R-T-C-F method</b> for writing good prompts:
+        <b>Role</b> (who the AI should act as: a teacher, a coach, an examiner),
+        <b>Task</b> (what exactly you want),
+        <b>Context</b> (class, subject, level and other details that matter) and
+        <b>Format</b> (points, table, short paragraph, or in Hindi).</li>
+      <li><b>Live comparison in Gemini:</b> a weak prompt (“Tell me about photosynthesis”) against a strong one built with R-T-C-F. The exact prompts are given in Annexure A.</li>
+      <li><b>Follow-up prompts:</b> “explain more simply”, “give a daily-life example”, “make a table”, “now explain in Hindi”, “ask me questions to check my understanding”.</li>
+      <li><b>AI as a tutor, not a copying machine:</b> asking for hints one step at a time instead of the final answer.</li>
+      <li><b>Gemini and Gemma, the difference:</b> Gemini is Google’s AI assistant that runs on Google’s servers and needs the internet. Gemma is Google’s family of open models (the current version is Gemma 4) that anyone can download and run on a laptop, or even on a phone, without internet. Developers use models like Gemma to build their own AI apps.</li>
+    </ul>
+    <h4>Demonstration</h4>
+    <p>Gemma running on the trainer’s phone in airplane mode through the Google AI Edge Gallery app, to show that AI does not always need the internet or a big company’s server.</p>
+    <h4>Student activity: “Prompt makeover”</h4>
+    <p>The class gets a weak prompt: “Write an essay on pollution.” Working in pairs, students rewrite it using R-T-C-F. Two improved prompts are tried live in Gemini and the answers are compared with the original.</p>
+    <div class="outcome"><b>Outcome:</b> Students can write clear and specific prompts, and can use follow-up questions to get more useful answers.</div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="mod-head">
+    <div class="mod-title"><div class="mod-no">Module 4</div><h3>NotebookLM as an AI Study Partner</h3></div>
+    <div class="mod-time"><span class="d">15 min</span><span class="t">00:50 – 01:05</span></div>
+  </div>
+  <div class="mod-body">
+    <h4>Topics covered</h4>
+    <ul>
+      <li><b>How NotebookLM is different from a general chatbot:</b> it answers from the sources you add (a textbook chapter, class notes, PDFs, websites or YouTube videos) and shows citations, so every answer can be checked against the original text.</li>
+      <li><b>Live demonstration with a textbook chapter</b> (for example, “Life Processes” from Class 10 Science, or any chapter suggested by the school’s teachers):
+        <ul>
+          <li>asking questions and clicking a citation to see the exact line in the chapter</li>
+          <li>creating a study guide and a short summary for revision</li>
+          <li>generating flashcards and a quiz from the chapter</li>
+          <li>making a mind map of the whole chapter</li>
+          <li>Audio Overview: the chapter explained as a podcast-style conversation between two AI voices, which can also be made in Hindi</li>
+          <li>a short look at Video Overview and Slide Deck</li>
+        </ul>
+      </li>
+      <li><b>Smart ways to use it for studies:</b> one notebook for each subject, adding your own class notes, and asking it to test you so that you can focus on the topics you got wrong.</li>
+      <li><b>Its limits:</b> it is only as good as the sources you give it. Personal or private documents should never be uploaded.</li>
+    </ul>
+    <h4>Student activity</h4>
+    <p>Students suggest the questions to be asked to the notebook. The class then attempts the quiz that NotebookLM creates from the chapter.</p>
+    <div class="outcome"><b>Outcome:</b> Students know how to turn their own textbook chapter into notes, flashcards, a quiz and an audio summary for revision.</div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="mod-head">
+    <div class="mod-title"><div class="mod-no">Module 5</div><h3>Visuals and Presentations with Nano Banana and Gemini</h3></div>
+    <div class="mod-time"><span class="d">15 min</span><span class="t">01:05 – 01:20</span></div>
+  </div>
+  <div class="mod-body">
+    <h4>Topics covered</h4>
+    <ul>
+      <li><b>What Nano Banana is:</b> Google’s image creation and editing model, available inside the Gemini app. Nano Banana Pro, the advanced version, can write clear and correct text inside images, which makes it useful for posters, charts and infographics.</li>
+      <li><b>Text to image:</b> describing a poster or illustration in words and getting the picture.</li>
+      <li><b>Editing with words:</b> changing the background, adding or removing objects, or changing the style of an image, while keeping the main subject the same.</li>
+      <li><b>Making presentations faster:</b> Gemini Canvas drafts a full presentation from a topic or notes, which can be exported to Google Slides and edited; Nano Banana creates custom slide visuals, diagrams and infographics; and NotebookLM’s Slide Deck turns your sources into slides.</li>
+      <li><b>Using it honestly in school work:</b> the content, facts and flow of a presentation must come from the student’s own thinking; AI helps with the design. Any slide or project that uses AI images should say so, for example “Images created with AI”.</li>
+      <li><b>Checking AI images:</b> Google adds an invisible digital watermark called SynthID to images made with its AI tools, and the Gemini app can check whether an image was made with Google AI.</li>
+    </ul>
+    <h4>Student activity</h4>
+    <p>The class picks a poster topic (Save Water, Say No to Plastic, or Road Safety). Two students dictate the prompt, the poster is created live, and it is then edited once based on the class’s suggestions, for example adding the title in Hindi.</p>
+    <div class="outcome"><b>Outcome:</b> Students understand how AI can help them make posters, visuals and presentations, and the right way to use and acknowledge AI-made images.</div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="mod-head">
+    <div class="mod-title"><div class="mod-no">Module 6</div><h3>AI Video Creation with Google Flow</h3></div>
+    <div class="mod-time"><span class="d">10 min</span><span class="t">01:20 – 01:30</span></div>
+  </div>
+  <div class="mod-body">
+    <h4>Topics covered</h4>
+    <ul>
+      <li><b>What Google Flow is:</b> an AI film-making tool from Google Labs that uses Google’s Veo video model to create short video clips, with sound, from a text description or an image.</li>
+      <li><b>How to describe a video:</b> subject, action, place, camera movement, lighting and sound. A good video prompt reads like a scene from a script.</li>
+      <li><b>Main features shown:</b> Text to Video, Frames to Video (from a starting and ending image), Ingredients to Video (keeping the same character across scenes) and Scene Builder (joining clips into a short story).</li>
+      <li><b>Uses for students:</b> school projects, awareness videos, short stories, and explaining science ideas visually.</li>
+      <li><b>Deepfakes and the law:</b> never make a video of a real person (a friend, teacher or celebrity) without permission. Creating or forwarding such content can be a cyber crime. Signs of a fake video: strange hands or eyes, lips not matching the voice, unnatural movement, and no trusted source.</li>
+    </ul>
+    <h4>Demonstration</h4>
+    <p>An 8-second clip of a boat ride through the Marble Rocks at Bhedaghat on the Narmada is created from a single prompt and then extended into a short scene. A pre-made clip is kept ready in case the internet is slow.</p>
+    <p class="note">Google Flow mostly requires a paid Google AI plan, so this module is a trainer demonstration only.</p>
+    <div class="outcome"><b>Outcome:</b> Students understand how AI videos are made, where they are useful, and how to recognise and avoid misuse such as deepfakes.</div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="mod-head">
+    <div class="mod-title"><div class="mod-no">Module 7</div><h3>Build an App Without Coding with Lovable</h3></div>
+    <div class="mod-time"><span class="d">10 min</span><span class="t">01:30 – 01:40</span></div>
+  </div>
+  <div class="mod-body">
+    <h4>Topics covered</h4>
+    <ul>
+      <li><b>What Lovable is:</b> a tool where you describe a website or app in plain English, and the AI writes the code and builds a working version that can be opened and shared.</li>
+      <li><b>Live build:</b> a quiz website for Class 9 students on “Our Solar System”, with ten multiple-choice questions, a score at the end and a bright, mobile-friendly design.</li>
+      <li><b>Improving it by talking to it:</b> “add a timer”, “show the correct answer after each question”, “make the buttons bigger”.</li>
+      <li><b>A look at the code it wrote.</b> The point for students: AI can write code, but a person still has to decide what to build, test whether it works, and fix the logic when it does not. Maths, logic and basic coding remain important.</li>
+      <li><b>Ideas students can try later</b> with a teacher or parent: a personal portfolio page, a class timetable, a study planner, or a page for the school’s annual function.</li>
+      <li><b>Career link:</b> this is a simple version of what software and AI engineers build during their B.Tech and in their jobs.</li>
+    </ul>
+    <div class="outcome"><b>Outcome:</b> Students see how an idea turns into a working app, and understand why logical thinking and coding skills still matter in the age of AI.</div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="mod-head">
+    <div class="mod-title"><div class="mod-no">Module 8</div><h3>Automation with Google Workspace Studio</h3></div>
+    <div class="mod-time"><span class="d">10 min</span><span class="t">01:40 – 01:50</span></div>
+  </div>
+  <div class="mod-body">
+    <h4>Topics covered</h4>
+    <ul>
+      <li><b>What automation is:</b> letting a computer do a repeated task on its own. Every automation has three parts: <b>Trigger</b> (when it should start), <b>Steps</b> (what should happen) and <b>Result</b>.</li>
+      <li><b>Google Workspace Studio</b> (studio.workspace.google.com): a Google tool where you describe a task in plain language and Gemini builds an AI agent that works across Gmail, Drive, Docs, Sheets, Calendar and Chat. No coding is needed.</li>
+      <li><b>Demonstration 1, event registration:</b> when a student fills the “Science Exhibition Registration” Google Form, the details are added to a Sheet and a confirmation email with the date and venue is sent automatically.</li>
+      <li><b>Demonstration 2, weekly summary:</b> every Friday evening, the agent reads the week’s emails from a chosen sender, summarises them, and posts a short to-do list in Google Chat.</li>
+      <li><b>Discussion:</b> where automation helps in a school (attendance reminders, homework alerts, circulars) and where a human must still take the decision.</li>
+    </ul>
+    <h4>Student activity</h4>
+    <p>Each student plans one automation on paper for a boring task in their own life, written as Trigger → Steps → Result. For example: every Sunday at 6 pm → list next week’s tests → remind me to revise.</p>
+    <p class="note">Workspace Studio works with a Google Workspace account, so it is shown as a trainer demonstration.</p>
+    <div class="outcome"><b>Outcome:</b> Students understand the idea of automation and AI agents, and can plan a simple automation in the Trigger → Steps → Result format.</div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="mod-head">
+    <div class="mod-title"><div class="mod-no">Module 9</div><h3>Using AI Responsibly, Quiz and Closing</h3></div>
+    <div class="mod-time"><span class="d">10 min</span><span class="t">01:50 – 02:00</span></div>
+  </div>
+  <div class="mod-body">
+    <h4>Five rules for using AI as a student</h4>
+    <ol class="rules">
+      <li><b>Check before you trust.</b> AI can be wrong while sounding sure. Verify important facts with your textbook or teacher.</li>
+      <li><b>Keep personal information private.</b> Never enter your phone number, address, passwords, Aadhaar details or private photos into an AI tool.</li>
+      <li><b>Use AI to learn, not to copy.</b> Submitting AI-written work as your own is dishonest. Mention it when you have used AI.</li>
+      <li><b>Respect others.</b> No fake photos or videos of real people, and no use of AI for bullying or pranks.</li>
+      <li><b>Follow age rules and use AI with guidance.</b> Many tools have a minimum age. Use them with the permission and guidance of parents and teachers.</li>
+    </ol>
+    <h4>Closing activities</h4>
+    <ul>
+      <li>Reporting cyber crime: National Cyber Crime Helpline <b>1930</b> and <b>cybercrime.gov.in</b>.</li>
+      <li>End-of-session quiz of 10 quick questions (Annexure B), by show of hands or through a Google Form.</li>
+      <li>Open questions from students and teachers, and a short note on career paths in AI, data science and computer engineering.</li>
+      <li>Feedback form (QR code shown on screen) and vote of thanks.</li>
+    </ul>
+    <div class="outcome"><b>Outcome:</b> Students leave with clear, practical rules for safe and honest use of AI, and their learning is checked through the quiz and feedback.</div>
+  </div>
+</section>
+
+<!-- =================== 7–11 =================== -->
+<h2><span class="num">7.</span>Learning Outcomes</h2>
+<p>By the end of the workshop, students will be able to:</p>
+<ol>
+  <li>Explain in simple words what AI, Machine Learning and Generative AI are, and point out AI in apps they use daily.</li>
+  <li>Discuss the benefits and risks of AI in education, health, farming and jobs, with examples.</li>
+  <li>Write clear prompts using the R-T-C-F method and improve answers with follow-up prompts.</li>
+  <li>Use NotebookLM to turn a textbook chapter into notes, flashcards, a quiz and an audio summary.</li>
+  <li>Describe how AI creates images, presentations and videos, and the ethical issues linked with them.</li>
+  <li>Understand that apps and automations can be built by describing them, and why logic and coding still matter.</li>
+  <li>Follow the basic rules of safe, honest and responsible use of AI.</li>
+</ol>
+
+<h2><span class="num">8.</span>Tools Covered in the Workshop</h2>
+<table class="grid">
+  <thead>
+    <tr><th style="width:33mm">Tool</th><th style="width:24mm">Made by</th><th>What it does</th><th style="width:16mm">Module</th><th style="width:34mm">Access for students</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>Gemini</b></td><td>Google</td><td>AI assistant for questions, explanations, writing and images</td><td>3, 5</td><td>Free at gemini.google.com, as per age rules</td></tr>
+    <tr><td><b>Gemma</b> (Gemma 4)</td><td>Google DeepMind</td><td>Open AI models that run on a laptop or phone, even offline</td><td>3</td><td>Free and open; trainer demo</td></tr>
+    <tr><td><b>NotebookLM</b></td><td>Google</td><td>Study tool that answers from your own sources, with citations, audio summaries, flashcards and quizzes</td><td>4</td><td>Free at notebooklm.google.com, as per age rules</td></tr>
+    <tr><td><b>Nano Banana</b> / Nano Banana Pro</td><td>Google (in Gemini app)</td><td>Image creation and editing; posters, infographics and slide visuals</td><td>5</td><td>Free with daily limits</td></tr>
+    <tr><td><b>Google Flow</b></td><td>Google Labs</td><td>AI video clips and short films using the Veo model</td><td>6</td><td>Mostly paid plans; trainer demo</td></tr>
+    <tr><td><b>Lovable</b></td><td>Lovable (lovable.dev)</td><td>Builds websites and apps from plain-language descriptions</td><td>7</td><td>Free plan with daily limits; trainer demo</td></tr>
+    <tr><td><b>Google Workspace Studio</b></td><td>Google</td><td>AI agents that automate tasks across Gmail, Drive, Sheets, Calendar and Chat</td><td>8</td><td>Needs a Google Workspace account; trainer demo</td></tr>
+  </tbody>
+</table>
+<p class="small">AI tools change quickly. Features and free limits are checked before each school visit, and the demonstrations are updated accordingly.</p>
+
+<h2><span class="num">9.</span>Assessment and Feedback</h2>
+<ul>
+  <li><b>During the session:</b> the “Real or AI?” game, thumbs poll, prompt makeover and the paper automation activity show how well students are following each module.</li>
+  <li><b>End-of-session quiz:</b> 10 multiple-choice questions covering all modules (Annexure B).</li>
+  <li><b>Feedback:</b> a short Google Form for students (rating and “one thing I learnt today”) and a separate feedback from the teacher coordinator of the school.</li>
+</ul>
+
+<h2><span class="num">10.</span>Requirements from the Host School</h2>
+<table class="grid kv">
+  <tbody>
+    <tr><td>Venue</td><td>Auditorium, hall or smart classroom suitable for the number of students attending</td></tr>
+    <tr><td>Display</td><td>Projector or smart board with HDMI input, clearly visible from the last row</td></tr>
+    <tr><td>Sound</td><td>Speaker system with at least one cordless microphone</td></tr>
+    <tr><td>Internet</td><td>Stable Wi-Fi or hotspot (20 Mbps or more recommended). The trainer carries a backup hotspot and offline copies of demo outputs.</td></tr>
+    <tr><td>Power</td><td>One power socket near the trainer’s table</td></tr>
+    <tr><td>Coordination</td><td>One teacher present throughout the session for coordination</td></tr>
+    <tr><td>Optional</td><td>Computer lab access, if the school wants students to try Gemini or NotebookLM in small groups</td></tr>
+    <tr><td>Shared in advance</td><td>Classes and sections attending, approximate number of students, date and time slot, and any textbook chapter the teachers would like used in the NotebookLM demonstration</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">11.</span>Documentation and Reporting</h2>
+<p>After each school visit, the following are submitted to the Institute within two working days, for record and further coordination:</p>
+<ul>
+  <li>Workshop report with date, school name, classes covered and number of students</li>
+  <li>Attendance count verified by the school</li>
+  <li>Photographs of the session, taken as per the school’s permission policy</li>
+  <li>Summary of student and teacher feedback</li>
+  <li>Acknowledgement or feedback letter from the school, wherever provided</li>
+</ul>
+
+<div class="signoff">
+  <div><span class="role">Prepared by</span><b>Mr. Deepak Vishwakarma</b>Trainer, BGIEM<br>Date: 05/10/2026</div>
+  <div><span class="role">Reviewed by</span><b>Dr. Niharika Yadav</b>Deputy Director, BGIEM<br>Date: ____________</div>
+  <div><span class="role">Approved by</span><b>&nbsp;</b>Director / Principal, BGIEM<br>Date: ____________</div>
+</div>
+
+<!-- =================== Annexure A =================== -->
+<h2 class="page-break"><span class="num">A.</span>Annexure A: Sample Prompts Used in Demonstrations</h2>
+<p class="small">These are the prompts used during the live demonstrations. They are adjusted on the spot based on the class level and suggestions from students.</p>
+
+<div class="prompt"><div class="label"><span>Module 3 · Gemini</span> – weak prompt and strong prompt (R-T-C-F)</div>
+<blockquote><i>Weak:</i> Tell me about photosynthesis.<br>
+<i>Strong:</i> You are my science teacher. Explain photosynthesis to a Class 8 student in five short points, with one example from daily life. Keep the language simple. At the end, ask me three questions to check if I have understood.</blockquote></div>
+
+<div class="prompt"><div class="label"><span>Module 3 · Gemini</span> – tutor mode</div>
+<blockquote>I am trying to solve this maths question: [question]. Do not give me the final answer. Give me one hint at a time and wait for my reply before giving the next hint.</blockquote></div>
+
+<div class="prompt"><div class="label"><span>Module 4 · NotebookLM</span> – after adding the chapter as a source</div>
+<blockquote>Using only this chapter, list the ten most important points for revision.<br>
+Explain the difference between aerobic and anaerobic respiration in a table, using only this chapter.<br>
+Make 15 flashcards on the key terms in this chapter.</blockquote></div>
+
+<div class="prompt"><div class="label"><span>Module 5 · Nano Banana</span> – poster and edit</div>
+<blockquote>Create an A4 portrait poster for a school “Save Water” campaign. Title in bold letters: “Every Drop Counts”. Show a schoolgirl closing a dripping tap, in a bright blue and green colour scheme and a clean flat illustration style. Leave space at the bottom for the school’s name.<br>
+<i>Edit:</i> Keep the same poster, but write the title in Hindi: <span class="hi">“हर बूँद कीमती है”</span>.</blockquote></div>
+
+<div class="prompt"><div class="label"><span>Module 5 · Gemini Canvas</span> – presentation</div>
+<blockquote>Create a 7-slide presentation for Class 9 on “Natural Disasters in India and How to Stay Safe”. Give one slide each to floods, earthquakes, cyclones and heatwaves, and end with a slide of do’s and don’ts. Use short points and suggest one picture for every slide.</blockquote></div>
+
+<div class="prompt"><div class="label"><span>Module 6 · Google Flow</span> – video clip</div>
+<blockquote>A slow, cinematic boat ride through the white Marble Rocks of Bhedaghat on the Narmada river at sunrise. Calm green water, soft golden light on the cliffs, a boatman rowing gently. The camera glides forward at water level. Sound of flowing water and birds.</blockquote></div>
+
+<div class="prompt"><div class="label"><span>Module 7 · Lovable</span> – quiz website</div>
+<blockquote>Build a quiz website for Class 9 students on “Our Solar System”. It should have ten multiple-choice questions, show one question at a time, tell the student whether the answer is right or wrong, and show the total score at the end. Use bright colours and make it work well on mobile phones.</blockquote></div>
+
+<div class="prompt"><div class="label"><span>Module 8 · Google Workspace Studio</span> – automation</div>
+<blockquote>When someone submits the “Science Exhibition Registration” form, add their name, class and project title to my “Exhibition 2026” sheet, and send them an email confirming their registration with the date and venue.</blockquote></div>
+
+<!-- =================== Annexure B =================== -->
+<h2 class="page-break"><span class="num">B.</span>Annexure B: End-of-Session Quiz</h2>
+<p class="small">Conducted in Module 9 by show of hands or through a Google Form. One mark for each question.</p>
+<ol class="quiz">
+  <li>Which of these is an example of Generative AI?
+    <div class="opts"><span>(a) A calculator</span><span>(b) A tool that makes a poster from a text description</span><span>(c) A torch app</span><span>(d) An alarm clock</span></div></li>
+  <li>A chatbot like Gemini mainly works by:
+    <div class="opts"><span>(a) Searching a dictionary</span><span>(b) Predicting the next word from patterns learnt from a large amount of text</span><span>(c) Copying answers from a teacher</span><span>(d) Reading the user’s mind</span></div></li>
+  <li>When an AI gives a wrong answer with full confidence, it is called:
+    <div class="opts"><span>(a) Hallucination</span><span>(b) Automation</span><span>(c) Encryption</span><span>(d) Animation</span></div></li>
+  <li>In the R-T-C-F prompt method, what does “C” stand for?
+    <div class="opts"><span>(a) Code</span><span>(b) Context</span><span>(c) Colour</span><span>(d) Copy</span></div></li>
+  <li>Which tool answers only from the sources you add and shows citations?
+    <div class="opts"><span>(a) Google Flow</span><span>(b) Lovable</span><span>(c) NotebookLM</span><span>(d) Gemma</span></div></li>
+  <li>Which Google AI model can be downloaded and run on a phone without internet?
+    <div class="opts"><span>(a) Gemma</span><span>(b) Google Flow</span><span>(c) Workspace Studio</span><span>(d) NotebookLM</span></div></li>
+  <li>Google Flow is mainly used to:
+    <div class="opts"><span>(a) Send emails</span><span>(b) Make AI video clips</span><span>(c) Build quizzes</span><span>(d) Translate text</span></div></li>
+  <li>In an automation, the event that starts it is called the:
+    <div class="opts"><span>(a) Result</span><span>(b) Prompt</span><span>(c) Trigger</span><span>(d) Model</span></div></li>
+  <li>Which of these is safe to share with an AI tool?
+    <div class="opts"><span>(a) Your Aadhaar number</span><span>(b) Your home address</span><span>(c) A question about a chapter you are studying</span><span>(d) Your password</span></div></li>
+  <li>If you receive a fake (deepfake) video of a classmate, you should:
+    <div class="opts"><span>(a) Forward it to friends</span><span>(b) Make a funnier version of it</span><span>(c) Not forward it, and tell a teacher or report it on 1930 / cybercrime.gov.in</span><span>(d) Post it on social media</span></div></li>
+</ol>
+<div class="answer-key"><b>Answer key:</b> &nbsp;1 (b) &nbsp;·&nbsp; 2 (b) &nbsp;·&nbsp; 3 (a) &nbsp;·&nbsp; 4 (b) &nbsp;·&nbsp; 5 (c) &nbsp;·&nbsp; 6 (a) &nbsp;·&nbsp; 7 (b) &nbsp;·&nbsp; 8 (c) &nbsp;·&nbsp; 9 (c) &nbsp;·&nbsp; 10 (c)</div>
+
+</body>
+</html>

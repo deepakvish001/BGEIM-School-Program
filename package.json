@@ -1,0 +1,11 @@
+{
+  "name": "bgiem-school-program",
+  "private": true,
+  "description": "Course module for the BGIEM AI workshop in schools",
+  "scripts": {
+    "build": "node scripts/build-pdf.js"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  }
+}
