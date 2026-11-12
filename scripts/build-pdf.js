@@ -21,17 +21,42 @@ const DOCS = [
     subject: 'Hands-on AI lab workshop plan for school students',
     keywords: ['BGIEM', 'AI Innovation Lab', 'workshop plan', 'school outreach'],
   },
+  ...[
+    ['Billabong High International School', 'Billabong High'],
+    ['Satya Prakash Public School', 'Satya Prakash Public School'],
+  ].map(([name, short]) => ({
+    src: 'workshop-proposal.html',
+    vars: { SCHOOL_NAME: name, SCHOOL_SHORT: short },
+    out: `BGIEM_AI_Workshop_Proposal_${name.replace(/ /g, '_')}.pdf`,
+    title: `Workshop Proposal - ${name}, Jabalpur`,
+    subject: 'Proposal for a hands-on AI workshop for students of Classes 8 to 12',
+    keywords: ['BGIEM', 'AI workshop', 'proposal', name],
+  })),
 ];
 
 (async () => {
   const browser = await chromium.launch();
   for (const d of DOCS) {
     const out = path.join(root, d.out);
+    // Templates with {{VARS}} are filled into a temporary copy next to the source,
+    // so that relative asset paths still resolve.
+    let src = path.join(root, 'source', d.src);
+    let tmp = null;
+    if (d.vars) {
+      const html = fs.readFileSync(src, 'utf8')
+        .replace(/\{\{(\w+)\}\}/g, (m, k) => (k in d.vars ? d.vars[k] : m));
+      tmp = src = path.join(root, 'source', `.build-${process.pid}-${path.basename(d.out, '.pdf')}.html`);
+      fs.writeFileSync(tmp, html);
+    }
     const page = await browser.newPage();
-    await page.goto('file://' + path.join(root, 'source', d.src), { waitUntil: 'networkidle' });
-    await page.evaluate(() => document.fonts.ready);
-    await page.pdf({ path: out, preferCSSPageSize: true, printBackground: true });
-    await page.close();
+    try {
+      await page.goto('file://' + src, { waitUntil: 'networkidle' });
+      await page.evaluate(() => document.fonts.ready);
+      await page.pdf({ path: out, preferCSSPageSize: true, printBackground: true });
+    } finally {
+      await page.close();
+      if (tmp) fs.unlinkSync(tmp);
+    }
 
     // Document properties (optional: needs `npm install`)
     try {
