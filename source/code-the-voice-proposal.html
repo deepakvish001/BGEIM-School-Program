@@ -94,11 +94,11 @@
   .hero .sub { font-size: 13pt; font-weight: 600; margin-top: 1mm; }
   .hero .tag { font-size: 12pt; font-style: italic; color: var(--red-dark); margin-top: 1.5mm; }
 
-  .pitch { background: var(--light); border-left: 1.4mm solid var(--red); padding: 3mm 4.5mm; margin: 0 0 4mm; font-size: 11pt; line-height: 1.55; }
+  .pitch { background: var(--light); border-left: 1.4mm solid var(--red); padding: 2.6mm 4.5mm; margin: 0 0 3.5mm; font-size: 10.6pt; line-height: 1.5; }
   .pitch p:last-child { margin-bottom: 0; }
 
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin-bottom: 4mm; }
-  .stats div { border: 0.3mm solid var(--rule); border-top: 1mm solid var(--red); padding: 2mm 2mm 1.6mm; text-align: center; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin-bottom: 2mm; }
+  .stats div { border: 0.3mm solid var(--rule); border-top: 1mm solid var(--red); padding: 1.6mm 2mm 1.2mm; text-align: center; }
   .stats b { display: block; font-size: 17pt; line-height: 1.1; }
   .stats span { font-size: 9pt; color: var(--muted); }
 
@@ -135,12 +135,21 @@
   .day .head b { font-size: 12pt; display: block; }
   .day .head span { font-size: 9.6pt; font-style: italic; color: var(--muted); }
   .day table { margin-bottom: 0; }
+  .day td, .day th { font-size: 9.6pt; padding: 1.3mm 2.2mm; }
+  .day td.sess { width: 34mm; }
   .day .out { border: 0.25mm solid var(--rule); border-top: none; background: var(--tint); padding: 1.6mm 2.6mm; font-size: 10pt; text-align: left; }
   .day .out b { color: var(--red-dark); }
 
   .signoff { display: flex; justify-content: space-between; margin-top: 18mm; break-inside: avoid; text-align: left; }
   .signoff div { width: 74mm; border-top: 0.3mm solid var(--ink); padding-top: 1.6mm; font-size: 10.2pt; }
   .signoff .role { font-style: italic; color: var(--muted); display: block; }
+
+  /* Timing tables */
+  td.mins { width: 15mm; text-align: center; white-space: nowrap; }
+  th.mins { text-align: center; }
+  tr.total td { background: var(--light); font-weight: 700; }
+  td.mod { width: 17mm; text-align: center; font-weight: 600; }
+  .tag-m { display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 0.06em; color: var(--red-dark); border: 0.25mm solid var(--red-dark); padding: 0 1.2mm; margin-left: 1mm; vertical-align: 1px; }
 </style>
 </head>
 <body>
@@ -170,9 +179,9 @@
 
   <p>Respected Sir/Madam,</p>
 
-  <p>Baderia Global Institute of Engineering &amp; Management (BGIEM), Jabalpur, is pleased to propose <b>Code the Voice</b>, a three-day hands-on bootcamp in which students build their own voice AI agent from scratch.</p>
+  <p>Baderia Global Institute of Engineering &amp; Management (BGIEM), Jabalpur, is pleased to propose <b>Code the Voice</b>, a three-day hands-on bootcamp in which students learn to build AI voice agents.</p>
 
-  <p>Voice assistants are now part of everyday life, and companies in banking, healthcare and customer service are using AI agents that can hold a real conversation. In this bootcamp, students learn how such systems work by building one themselves. Each team writes a working assistant that listens to a question, thinks with a large language model, fetches live information from the internet and replies aloud in English or Hindi. On the last day, the teams present their agents to the school’s teachers.</p>
+  <p>Voice AI agents now answer calls for banks, hospitals and customer service teams. In this bootcamp, students learn how these systems work and build them with the tools the industry uses: ElevenLabs for no-code agents, and Pipecat, an open-source Python framework, for code-based agents. Each team builds an agent that holds a natural conversation, answers from a knowledge base, books appointments and follows safety guardrails, and presents it live on the final day.</p>
 
   <p>The bootcamp runs for three hours a day over three days in the school’s computer lab. It is conducted by our trainers free of cost, as part of the Institute’s school outreach programme.</p>
 
@@ -202,15 +211,15 @@
 </div>
 
 <div class="pitch">
-  <p>Siri, Alexa and Google Assistant were built by large teams of engineers. In three days, your students will build their own.</p>
-  <p>In Code the Voice, every team writes a working voice AI agent from the first line of code. It hears a question, thinks with a real large language model, pulls live data from the internet and answers out loud, in English or Hindi. There are no ready-made apps and no drag-and-drop blocks. It is real code and real AI, and every team ends with a finished product to demonstrate on the last day.</p>
+  <p>Siri, Alexa and Google Assistant were built by large teams of engineers. In three days, your students will build their own voice agent.</p>
+  <p>Every team builds it twice: first on ElevenLabs, the no-code platform that businesses use to launch voice agents, and then in Python with Pipecat, the open-source framework engineers use in production. The finished agent holds a natural conversation, answers from its own knowledge base and books appointments on a calendar. On the last day, it takes a live call in front of the school’s teachers.</p>
 </div>
 
 <div class="stats">
   <div><b>3</b><span>days</span></div>
-  <div><b>9</b><span>hours of hands-on coding</span></div>
-  <div><b>6</b><span>build levels</span></div>
-  <div><b>1</b><span>working AI agent per team</span></div>
+  <div><b>540</b><span>minutes of learning</span></div>
+  <div><b>4</b><span>modules</span></div>
+  <div><b>1</b><span>live voice agent per team</span></div>
 </div>
 
 <h2>1. The Bootcamp at a Glance</h2>
@@ -218,170 +227,155 @@
   <tr><td>Programme</td><td>Code the Voice: The 3-Day AI Voice Agent Bootcamp</td></tr>
   <tr><td>Proposed for</td><td>{{SCHOOL_NAME}}</td></tr>
   <tr><td>Participants</td><td>Students of Classes {{CLASS_FROM}} to {{CLASS_TO}}; up to 40 students per batch, working in teams of 2 or 3</td></tr>
-  <tr><td>Duration</td><td>3 days, 3 hours a day (9 hours in all). The days can be consecutive or spread over one or two weeks.</td></tr>
+  <tr><td>Duration</td><td>3 days, 3 hours a day (540 minutes in all). The days can be consecutive or spread over one or two weeks.</td></tr>
   <tr><td>Venue</td><td>School computer lab</td></tr>
-  <tr><td>Format</td><td>Hands-on coding bootcamp, guided step by step by trainers and student mentors</td></tr>
-  <tr><td>Prerequisite</td><td>Basic knowledge of any programming language. No prior knowledge of AI is needed.</td></tr>
-  <tr><td>Technology</td><td>JavaScript in Google Chrome, with starter code provided by BGIEM</td></tr>
+  <tr><td>Format</td><td>Concepts, live demonstrations and guided building, with most of the time spent on hands-on work</td></tr>
+  <tr><td>Tools</td><td>ElevenLabs Agents platform (no-code) and Pipecat, the open-source Python framework (code)</td></tr>
+  <tr><td>Prerequisite</td><td>Basic programming, preferably in Python. No prior knowledge of AI is needed.</td></tr>
+  <tr><td>Setup</td><td>BGIEM prepares the accounts and software with the school’s IT team before Day 1.</td></tr>
   <tr><td>Lead trainer</td><td>Mr. Deepak Vishwakarma, Lead Corporate Trainer, BGIEM</td></tr>
   <tr><td>Cost to the school</td><td>Nil</td></tr>
 </table>
 
 <h2>2. Why This Bootcamp</h2>
 <ul>
-  <li><b>Voice AI is where the industry is heading.</b> Banks, hospitals, airlines and online stores now use AI agents that talk to customers. Students build a small version of the same technology.</li>
-  <li><b>It shows the whole picture.</b> Students use AI every day but rarely see how an AI product is put together. Building an agent from start to finish covers speech, language models, APIs, prompts and safety in one project.</li>
-  <li><b>It stretches students who can already code.</b> The project goes well beyond classroom exercises, and the finished agent can be shown at science exhibitions, hackathons and in college applications.</li>
-  <li><b>It supports the school curriculum.</b> CBSE offers Artificial Intelligence as a subject. The bootcamp turns that theory into working practice.</li>
+  <li><b>Voice AI is where the industry is heading.</b> Banks, hospitals, recruiters and logistics companies now use AI agents to answer and make calls. Students learn the technology behind them.</li>
+  <li><b>Students use real industry tools.</b> ElevenLabs and Pipecat are used to build voice agents for actual businesses, not just for classrooms.</li>
+  <li><b>It covers both paths.</b> Students first build without code to understand design, then build in code to understand what happens underneath.</li>
+  <li><b>It stretches students who can already code.</b> The finished agent is a strong project for science exhibitions, hackathons and college applications.</li>
 </ul>
 
 <h2>3. What Students Will Build</h2>
-<p>Every team builds a voice AI agent that runs in the web browser. It follows the same four-step design used in commercial voice agents:</p>
+<p>Every team builds a voice agent on the cascade architecture, the design used in most commercial voice agents:</p>
 
 <div class="arch">
-  <div class="node"><b>LISTEN</b><span>Speech-to-text with the Web Speech API</span></div>
+  <div class="node"><b>LISTEN</b><span>Voice activity detection and speech-to-text</span></div>
   <div class="arrow"><svg width="16" height="12" viewBox="0 0 16 12"><path d="M0 6h13M9 1l5 5-5 5" fill="none" stroke="#B5161C" stroke-width="1.6"/></svg></div>
-  <div class="node"><b>THINK</b><span>JavaScript rules and a large language model (Google Gemini)</span></div>
+  <div class="node"><b>THINK</b><span>Language model, system prompt and knowledge base</span></div>
   <div class="arrow"><svg width="16" height="12" viewBox="0 0 16 12"><path d="M0 6h13M9 1l5 5-5 5" fill="none" stroke="#B5161C" stroke-width="1.6"/></svg></div>
-  <div class="node"><b>ACT</b><span>Live data from web APIs, such as weather and Wikipedia</span></div>
+  <div class="node"><b>ACT</b><span>Tools such as calendar booking and a database</span></div>
   <div class="arrow"><svg width="16" height="12" viewBox="0 0 16 12"><path d="M0 6h13M9 1l5 5-5 5" fill="none" stroke="#B5161C" stroke-width="1.6"/></svg></div>
-  <div class="node"><b>SPEAK</b><span>Text-to-speech with the Speech Synthesis API</span></div>
+  <div class="node"><b>SPEAK</b><span>Text-to-speech in a natural voice</span></div>
 </div>
-<p class="arch-note">The language model is reached through BGIEM’s lab server, so students never handle API keys.</p>
+<p class="arch-note">Students build this pipeline twice: once on ElevenLabs without code, and once in Python with Pipecat.</p>
 
-<p>On the last day, each team turns its agent into a product for a real purpose of its own choice, for example:</p>
-<ul>
-  <li>a <b>school helpdesk</b> that answers questions about timings, events and rules;</li>
-  <li>an <b>exam revision tutor</b> that asks questions and explains answers;</li>
-  <li>a <b>city guide for Jabalpur</b> that talks about places, weather and history;</li>
-  <li>a <b>career counsellor</b> that explains courses and career paths.</li>
-</ul>
+<p>Each team chooses a real use for its agent, for example a <b>school helpdesk</b>, a <b>clinic appointment desk</b>, a <b>college admission enquiry line</b> or an <b>exam revision tutor</b>.</p>
 
-<!-- ===================== Day-wise programme ===================== -->
-<h2>4. Day-wise Programme</h2>
+<h2>4. Course Structure</h2>
+<table>
+  <thead><tr><th style="width:17mm">Module</th><th>Title and topics</th><th style="width:16mm">Day</th><th class="mins" style="width:18mm">Minutes</th></tr></thead>
+  <tbody>
+    <tr><td class="mod">1</td><td><b>AI Voice Agents Landscape</b><br>Bootcamp roadmap; voice AI use cases and return on investment; why voice AI skills matter</td><td>Day 1</td><td class="mins">45</td></tr>
+    <tr><td class="mod">2</td><td><b>Foundations of AI Voice Agents and Their Architectures</b><br>Inbound and outbound agents; cascade architecture; speech-to-speech architecture; build paths, challenges and what’s next</td><td>Day 1</td><td class="mins">115</td></tr>
+    <tr><td class="mod">3</td><td><b>Building Voice Agents on a No-Code Platform (ElevenLabs)</b><br>Getting started; prompt, voice and LLM setup; workflows and sub-agents; A/B testing and knowledge base; calendar booking and system tools; guardrails; advanced settings; live testing</td><td>Day 2</td><td class="mins">160</td></tr>
+    <tr><td class="mod">4</td><td><b>Building Code-Based Voice Agents with Pipecat</b><br>Why code-based agents; live demo of a booking agent; building the Pipecat pipeline; pipeline recap</td><td>Day 3</td><td class="mins">100</td></tr>
+    <tr><td class="mod">–</td><td><b>Capstone, Demo Day and Feedback</b><br>Final polish of each team’s agent, live demonstration and feedback</td><td>Day 3</td><td class="mins">70</td></tr>
+    <tr><td class="mod">–</td><td>Breaks, recaps and daily wrap-ups</td><td>All</td><td class="mins">50</td></tr>
+    <tr class="total"><td></td><td>Total</td><td></td><td class="mins">540</td></tr>
+  </tbody>
+</table>
+
+<!-- ===================== Day-wise timing ===================== -->
+<h2>5. Day-wise Timing Breakdown</h2>
 
 <div class="day">
-  <div class="bar"><div class="num">Day 1</div><div class="head"><b>Make It Listen</b><span>Speech in, speech out, and a rule-based brain</span></div></div>
+  <div class="bar"><div class="num">Day 1</div><div class="head"><b>Understand the Voice AI World</b><span>Module 1 and Module 2</span></div></div>
   <table>
-    <tr><td class="time">0:00 – 0:30</td><td class="sess">Kick-off</td><td>Live demonstration of a finished agent. How voice agents work: listen, think, act and speak. Teams are formed and the starter code is set up.</td></tr>
-    <tr><td class="time">0:30 – 1:20</td><td class="sess">Level 1: Voice Loop</td><td>Capture speech with the Web Speech API, convert it to text and speak a reply with the Speech Synthesis API. Choose voices for English and Hindi.</td></tr>
-    <tr class="break"><td class="time">1:20 – 1:30</td><td colspan="2">Break</td></tr>
-    <tr><td class="time">1:30 – 2:40</td><td class="sess">Level 2: Rule-Based Brain</td><td>Write intents in JavaScript for commands such as the time, the date, a timer and calculations. Handle unknown questions with fallback replies.</td></tr>
-    <tr><td class="time">2:40 – 3:00</td><td class="sess">Day Challenge</td><td>Each team adds three commands of its own and demonstrates them.</td></tr>
+    <thead><tr><th>Time</th><th class="mins">Min.</th><th>Session</th><th>What students do</th></tr></thead>
+    <tr><td class="time">0:00 – 0:15</td><td class="mins">15</td><td class="sess">Kick-off and Roadmap</td><td>A finished voice agent takes a live call in front of the class. Overview of the three days and of what each team will build.</td></tr>
+    <tr><td class="time">0:15 – 0:35</td><td class="mins">20</td><td class="sess">Use Cases and ROI</td><td>How banks, hospitals, recruiters and logistics companies use voice agents, and why: service round the clock, scale and lower cost per call.</td></tr>
+    <tr><td class="time">0:35 – 0:45</td><td class="mins">10</td><td class="sess">Why Voice AI Skills Matter</td><td>Jobs and skills in voice AI, and where the field is heading.</td></tr>
+    <tr><td class="time">0:45 – 1:00</td><td class="mins">15</td><td class="sess">Inbound and Outbound Agents</td><td>Agents that answer calls and agents that make them, with examples of each. Teams decide which kind they will build.</td></tr>
+    <tr class="break"><td class="time">1:00 – 1:10</td><td class="mins">10</td><td colspan="2">Break</td></tr>
+    <tr><td class="time">1:10 – 2:10</td><td class="mins">60</td><td class="sess">Cascade Architecture</td><td>Telephony, voice activity detection and turn-taking, speech-to-text, the language model, system prompt, knowledge base, tools, memory, streaming, interruptions and transfer to a human. Mini-lab: each team builds a simple listen–think–speak loop in the browser.</td></tr>
+    <tr><td class="time">2:10 – 2:30</td><td class="mins">20</td><td class="sess">Speech-to-Speech Architecture</td><td>How newer models listen and speak directly. Comparison with the cascade on delay, emotion, reliability of tools and monitoring, with a live demonstration.</td></tr>
+    <tr><td class="time">2:30 – 2:50</td><td class="mins">20</td><td class="sess">Build Paths and Challenges</td><td>No-code platforms and code frameworks compared. Real problems such as delay, background noise, turn-taking and safety, and what comes next.</td></tr>
+    <tr><td class="time">2:50 – 3:00</td><td class="mins">10</td><td class="sess">Day Wrap-up</td><td>Quick quiz on the day’s concepts. Teams choose the use case for their agent.</td></tr>
+    <tr class="total"><td colspan="1">Day 1 total</td><td class="mins">180</td><td colspan="2">3 hours</td></tr>
   </table>
-  <div class="out"><b>Day 1 output:</b> an assistant that listens, answers fixed commands and speaks.</div>
+  <div class="out"><b>Day 1 output:</b> students understand how voice agents work, have built a basic voice loop and have chosen the use case for their agent.</div>
 </div>
 
 <div class="day">
-  <div class="bar"><div class="num">Day 2</div><div class="head"><b>Make It Smart</b><span>Live tools and an AI brain with its own personality</span></div></div>
+  <div class="bar"><div class="num">Day 2</div><div class="head"><b>Build It Without Code</b><span>Module 3: ElevenLabs</span></div></div>
   <table>
-    <tr><td class="time">0:00 – 0:15</td><td class="sess">Recap</td><td>Quick review and a debugging clinic for any team that needs help.</td></tr>
-    <tr><td class="time">0:15 – 1:20</td><td class="sess">Level 3: Live Tools</td><td>How APIs work: fetch requests, JSON and asynchronous code. The agent reports the weather of any city through the Open-Meteo APIs and reads short facts from Wikipedia.</td></tr>
-    <tr class="break"><td class="time">1:20 – 1:30</td><td colspan="2">Break</td></tr>
-    <tr><td class="time">1:30 – 2:30</td><td class="sess">Level 4: AI Brain</td><td>What a large language model is, and how tokens and context work. Connect the agent to Google Gemini through the BGIEM lab server, and write a system prompt that gives it a name, a personality and limits.</td></tr>
-    <tr><td class="time">2:30 – 3:00</td><td class="sess">Guardrail Challenge</td><td>Teams try to break each other’s agents with tricky questions, then strengthen their own guardrails.</td></tr>
+    <thead><tr><th>Time</th><th class="mins">Min.</th><th>Session</th><th>What students do</th></tr></thead>
+    <tr><td class="time">0:00 – 0:10</td><td class="mins">10</td><td class="sess">Recap</td><td>Quick recap of Day 1. Teams confirm their use case.</td></tr>
+    <tr><td class="time">0:10 – 0:30</td><td class="mins">20</td><td class="sess">Getting Started with ElevenLabs</td><td>A tour of the agents platform. Each team creates its first agent and makes a test call.</td></tr>
+    <tr><td class="time">0:30 – 1:15</td><td class="mins">45</td><td class="sess">Prompt, Voice and LLM Setup</td><td>Writing a structured system prompt covering the agent’s role, goal, tone, steps and rules. Choosing a voice and a language model, writing the first message, and setting up English and Hindi.</td></tr>
+    <tr class="break"><td class="time">1:15 – 1:25</td><td class="mins">10</td><td colspan="2">Break</td></tr>
+    <tr><td class="time">1:25 – 1:50</td><td class="mins">25</td><td class="sess">Workflows and Sub-Agents</td><td>Designing the conversation as a flow, and handing over between specialist sub-agents.</td></tr>
+    <tr><td class="time">1:50 – 2:05</td><td class="mins">15</td><td class="sess">A/B Testing and Knowledge Base</td><td>Adding a knowledge base document so that the agent answers from facts, and comparing two versions of the agent to see which works better.</td></tr>
+    <tr><td class="time">2:05 – 2:25</td><td class="mins">20</td><td class="sess">Calendar Booking and System Tools</td><td>Connecting the agent to a demo Google Calendar so that it can book appointments. System tools such as ending a call and transferring to a human.</td></tr>
+    <tr><td class="time">2:25 – 2:35</td><td class="mins">10</td><td class="sess">Guardrails</td><td>Keeping the agent on its topic and protecting it from off-topic and manipulative conversations.</td></tr>
+    <tr><td class="time">2:35 – 2:45</td><td class="mins">10</td><td class="sess">Advanced Settings</td><td>Turn-taking, interruptions, response speed and voice settings.</td></tr>
+    <tr><td class="time">2:45 – 3:00</td><td class="mins">15</td><td class="sess">Live Testing</td><td>Teams call each other’s agents, try to break them and note what to fix.</td></tr>
+    <tr class="total"><td>Day 2 total</td><td class="mins">180</td><td colspan="2">3 hours</td></tr>
   </table>
-  <div class="out"><b>Day 2 output:</b> an agent with live data, its own personality and safety guardrails.</div>
+  <div class="out"><b>Day 2 output:</b> a working no-code voice agent with a knowledge base, calendar booking and guardrails.</div>
 </div>
 
 <div class="day">
-  <div class="bar"><div class="num">Day 3</div><div class="head"><b>Make It an Agent</b><span>Agent skills, a finished product and Demo Day</span></div></div>
+  <div class="bar"><div class="num">Day 3</div><div class="head"><b>Build It in Code</b><span>Module 4: Pipecat, Demo Day and Feedback</span></div></div>
   <table>
-    <tr><td class="time">0:00 – 0:50</td><td class="sess">Level 5: Agent Skills</td><td>Function calling, in which the AI decides which tool to use and returns the details as JSON. Conversation memory, switching between English and Hindi, a wake word, and stopping speech when the user interrupts.</td></tr>
-    <tr><td class="time">0:50 – 1:40</td><td class="sess">Level 6: Product Build</td><td>Each team turns its agent into a product for a real purpose and designs its interface.</td></tr>
-    <tr class="break"><td class="time">1:40 – 1:50</td><td colspan="2">Break</td></tr>
-    <tr><td class="time">1:50 – 2:10</td><td class="sess">Testing</td><td>Teams test each other’s agents for accuracy, response time and guardrails, and make final fixes.</td></tr>
-    <tr><td class="time">2:10 – 2:50</td><td class="sess">Demo Day</td><td>Each team presents its agent live to a panel of the school’s teachers.</td></tr>
-    <tr><td class="time">2:50 – 3:00</td><td class="sess">Closing</td><td>Awards and certificates.</td></tr>
+    <thead><tr><th>Time</th><th class="mins">Min.</th><th>Session</th><th>What students do</th></tr></thead>
+    <tr><td class="time">0:00 – 0:15</td><td class="mins">15</td><td class="sess">Why Code-Based Voice Agents</td><td>When code is the better choice: full control, custom logic, lower running cost and open-source tools.</td></tr>
+    <tr><td class="time">0:15 – 0:30</td><td class="mins">15</td><td class="sess">Live Demo: Booking a Session</td><td>A code-based agent built with Pipecat books a session on a call, from start to finish.</td></tr>
+    <tr><td class="time">0:30 – 1:30</td><td class="mins">60</td><td class="sess">Building the Pipecat Pipeline</td><td>Guided coding in Python: frames and pipelines, WebRTC transport, Silero voice activity detection, speech-to-text, the language model with conversation context, text-to-speech, interruptions, and function calling with a booking database.</td></tr>
+    <tr class="break"><td class="time">1:30 – 1:40</td><td class="mins">10</td><td colspan="2">Break</td></tr>
+    <tr><td class="time">1:40 – 1:50</td><td class="mins">10</td><td class="sess">Pipeline Recap</td><td>The full pipeline reviewed step by step, and the no-code and code approaches compared side by side.</td></tr>
+    <tr><td class="time">1:50 – 2:10</td><td class="mins">20</td><td class="sess">Capstone Polish</td><td>Teams finalise their agent’s prompt, knowledge base, tools and guardrails for Demo Day.</td></tr>
+    <tr><td class="time">2:10 – 2:45</td><td class="mins">35</td><td class="sess">Demo Day</td><td>Each team’s agent takes a live call in front of a panel of the school’s teachers.</td></tr>
+    <tr><td class="time">2:45 – 3:00</td><td class="mins">15</td><td class="sess">Feedback and Closing</td><td>Feedback form, certificates and awards.</td></tr>
+    <tr class="total"><td>Day 3 total</td><td class="mins">180</td><td colspan="2">3 hours</td></tr>
   </table>
-  <div class="out"><b>Day 3 output:</b> a finished voice AI agent, presented live and published on the BGIEM showcase page.</div>
+  <div class="out"><b>Day 3 output:</b> a finished voice agent presented live, and a code-based pipeline that students understand line by line.</div>
 </div>
+
+<table class="keep">
+  <thead><tr><th>Total time</th><th class="mins" style="width:22mm">Minutes</th><th style="width:22mm">Hours</th></tr></thead>
+  <tbody>
+    <tr><td>Day 1: Modules 1 and 2</td><td class="mins">180</td><td class="c">3</td></tr>
+    <tr><td>Day 2: Module 3</td><td class="mins">180</td><td class="c">3</td></tr>
+    <tr><td>Day 3: Module 4, Demo Day and Feedback</td><td class="mins">180</td><td class="c">3</td></tr>
+    <tr class="total"><td>Total</td><td class="mins">540</td><td class="c">9</td></tr>
+  </tbody>
+</table>
 
 <!-- ===================== Remaining sections ===================== -->
-<h2>5. Learning Outcomes</h2>
+<h2>6. Learning Outcomes</h2>
 <p>By the end of the bootcamp, students will be able to:</p>
 <ol>
-  <li>explain how a voice AI agent works, from speech recognition to the spoken reply;</li>
-  <li>use the browser’s speech recognition and speech synthesis APIs in JavaScript;</li>
-  <li>call web APIs, work with JSON data and write asynchronous code;</li>
-  <li>connect an application to a large language model and control it with system prompts and guardrails;</li>
-  <li>add agent behaviour such as tool selection, memory and interruption handling;</li>
-  <li>plan, test and present a software product as a team.</li>
+  <li>explain where voice AI agents are used and why businesses are adopting them;</li>
+  <li>describe the cascade and speech-to-speech architectures and choose between them;</li>
+  <li>build a no-code voice agent with a structured prompt, knowledge base, workflows, tools and guardrails;</li>
+  <li>build a code-based voice pipeline in Python with Pipecat, including function calling;</li>
+  <li>deal with real-world problems such as delay, turn-taking, interruptions and background noise;</li>
+  <li>test an agent, improve it and present it as a product.</li>
 </ol>
 
-<h2>6. What Students Take Home</h2>
+<h2>7. What Students Take Home</h2>
 <ul>
-  <li>The complete source code of their agent, with comments.</li>
-  <li>Their agent published on the BGIEM showcase page for one month, so that it opens on any phone.</li>
-  <li>A bootcamp handbook that explains every level step by step.</li>
+  <li>The design of their no-code agent: its system prompt, workflow and knowledge base, so that they can build it again later.</li>
+  <li>The complete Pipecat project code, with comments.</li>
+  <li>A bootcamp handbook that explains every module step by step.</li>
   <li>A certificate of completion from BGIEM. The top three teams also receive awards.</li>
   <li>Four weeks of online doubt support through a Google Classroom managed by the school.</li>
 </ul>
 
-<h2>7. Roles and Responsibilities</h2>
-<table>
-  <thead><tr><th style="width:50%">BGIEM will</th><th>The school is requested to</th></tr></thead>
-  <tbody>
-    <tr><td>
-      <ul>
-        <li>provide the lead trainer, a co-trainer and student mentors;</li>
-        <li>provide the starter code, handbook and the AI lab server, and bear its usage cost;</li>
-        <li>visit the lab three days before the bootcamp to test the setup;</li>
-        <li>bring six spare headsets;</li>
-        <li>provide certificates and awards;</li>
-        <li>share a report with the school within three working days.</li>
-      </ul>
-    </td><td>
-      <ul>
-        <li>make the computer lab available for the three days;</li>
-        <li>ask its IT team to allow the websites listed in Section 8;</li>
-        <li>share the list of participating students one day before;</li>
-        <li>nominate one teacher as coordinator;</li>
-        <li>nominate teachers for the Demo Day panel.</li>
-      </ul>
-    </td></tr>
-  </tbody>
-</table>
-
-<h2>8. Lab Requirements</h2>
-<table class="kv">
-  <tr><td>Computers</td><td>One per team (up to 20 for 40 students), with the latest Google Chrome</td></tr>
-  <tr><td>Headsets</td><td>One headset with a microphone per team, so that the agent does not hear its own voice</td></tr>
-  <tr><td>Internet</td><td>A stable connection; 50 Mbps or more is recommended for 40 users</td></tr>
-  <tr><td>Websites to allow</td><td>api.open-meteo.com, geocoding-api.open-meteo.com, en.wikipedia.org, and the addresses of the BGIEM lab server and the online code editor, which will be shared one week before</td></tr>
-  <tr><td>For the trainer</td><td>Projector, speakers and one microphone</td></tr>
-</table>
-<p class="small">No software needs to be installed. Everything runs in Google Chrome.</p>
-
-<h2>9. Student Safety and Data Privacy</h2>
+<h2>8. Student Safety and Data Privacy</h2>
 <ul>
-  <li>No student creates an account on any AI service, and no API key is shared with students.</li>
-  <li>The AI lab server has usage limits and logs no personal data.</li>
-  <li>Every agent has guardrails in its system prompt, so that it stays on its topic and refuses unsafe requests.</li>
-  <li>Speech recognition in Chrome is processed by Google’s online speech service, so students are told not to share personal information with their agents.</li>
+  <li>No student creates an account on any AI service. Teams work in workspaces managed by BGIEM.</li>
+  <li>The keys used in the Pipecat module are temporary and limited, and are switched off after the bootcamp.</li>
+  <li>Every agent has guardrails, so that it stays on its topic and refuses unsafe requests.</li>
+  <li>Test calls use sample details only. Calendar booking uses a BGIEM demo calendar and a sample database, never real personal data.</li>
   <li>Photographs are taken only as per the school’s policy.</li>
 </ul>
 
-<div class="keep">
-<h2>10. Assessment, Certificates and Reporting</h2>
-<p>On Demo Day, a panel of the school’s teachers judges each team out of 100 marks:</p>
-<table>
-  <thead><tr><th>Criterion</th><th style="width:24mm">Marks</th></tr></thead>
-  <tbody>
-    <tr><td>Working agent: listens, answers correctly and speaks</td><td class="c">30</td></tr>
-    <tr><td>Use of AI concepts: language model, tools, guardrails and memory</td><td class="c">25</td></tr>
-    <tr><td>Usefulness and originality of the idea</td><td class="c">15</td></tr>
-    <tr><td>Quality of code</td><td class="c">15</td></tr>
-    <tr><td>Presentation</td><td class="c">15</td></tr>
-  </tbody>
-</table>
-<p>All participants who attend the three days receive certificates of completion, and the top three teams receive awards. Within three working days, BGIEM shares a report with the school covering attendance, photographs, the list of projects and a summary of student feedback.</p>
-</div>
+<h2>9. Cost to the School</h2>
+<p>The bootcamp is offered free of cost. BGIEM bears all expenses, including the trainers, platform accounts, materials, certificates and awards. The school only provides its computer lab for the three days.</p>
 
-<h2>11. Cost to the School</h2>
-<p>The bootcamp is offered free of cost. BGIEM bears all expenses, including the trainers, materials, the AI lab server, certificates and awards. The school only provides the lab and the facilities listed in Section 8.</p>
-
-<h2>12. About the Institute</h2>
+<h2>10. About the Institute</h2>
 <p>Baderia Global Institute of Engineering &amp; Management, Jabalpur, was established in 2009. It is approved by AICTE and affiliated to Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal, and offers programmes in engineering and management, including B.Tech in Computer Science and Engineering with specialisation in Artificial Intelligence and Machine Learning. Through its school outreach programme, the Institute brings practical technology workshops to school students.</p>
 
 <div class="signoff">
