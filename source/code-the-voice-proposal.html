@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Code the Voice – Workshop Proposal | BGIEM</title>
+<style>
+  @font-face { font-family: "Source Serif 4"; font-weight: 400; font-style: normal; src: url("../assets/fonts/source-serif-4-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 400; font-style: italic; src: url("../assets/fonts/source-serif-4-latin-400-italic.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 600; font-style: normal; src: url("../assets/fonts/source-serif-4-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 700; font-style: normal; src: url("../assets/fonts/source-serif-4-latin-700-normal.woff2") format("woff2"); }
+
+  :root {
+    --ink: #1A1A1A;
+    --muted: #555555;
+    --rule: #9A9A9A;
+    --light: #F3F3F3;
+    --tint: #FCEEEE;
+    --red: #E31E24; /* from the BGIEM logo */
+    --red-dark: #B5161C;
+  }
+
+  @page {
+    size: A4;
+    margin: 22mm 20mm 20mm 20mm;
+    @top-left {
+      content: "Baderia Global Institute of Engineering & Management, Jabalpur";
+      font: italic 8.5pt "Source Serif 4", serif; color: var(--muted);
+      vertical-align: bottom; padding-bottom: 4mm;
+    }
+    @top-right {
+      content: "Code the Voice: Workshop Proposal";
+      font: italic 8.5pt "Source Serif 4", serif; color: var(--muted);
+      vertical-align: bottom; padding-bottom: 4mm;
+    }
+    @bottom-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font: 8.5pt "Source Serif 4", serif; color: var(--muted);
+      vertical-align: top; padding-top: 6mm;
+    }
+  }
+  @page :first {
+    margin-top: 16mm;
+    @top-left { content: none; }
+    @top-right { content: none; }
+    @bottom-center { content: none; }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0; background: #fff; color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: 10.8pt; line-height: 1.5;
+    text-align: justify; hyphens: none;
+  }
+  p { margin: 0 0 2.4mm; }
+  ul, ol { margin: 0 0 2.4mm; padding-left: 6mm; }
+  li { margin-bottom: 0.8mm; }
+  b, strong { font-weight: 600; }
+  .small { font-size: 9.6pt; color: var(--muted); }
+  .keep { break-inside: avoid; }
+  .page-break { break-before: page; }
+
+  /* Blanks to be filled in by hand */
+  .fill { display: inline-block; border-bottom: 0.3mm solid var(--ink); height: 1.1em; vertical-align: baseline; }
+  .fill.short { width: 14mm; }
+  .fill.mid { width: 42mm; }
+  .fill.long { width: 95mm; }
+  .fill.line { width: 100%; }
+
+  /* Letterhead */
+  .letterhead { display: flex; align-items: center; gap: 6mm; padding-bottom: 4mm; }
+  .letterhead img { height: 24mm; display: block; }
+  .letterhead .inst { font-size: 16pt; font-weight: 700; line-height: 1.2; text-align: left; }
+  .letterhead .addr { font-size: 10pt; color: var(--muted); margin-top: 1mm; text-align: left; }
+  .double-rule { border-top: 0.6mm solid var(--ink); border-bottom: 0.25mm solid var(--ink); height: 1.4mm; margin-bottom: 6mm; }
+
+  /* Covering letter */
+  .letter { font-size: 10.9pt; line-height: 1.52; }
+  .dateline { text-align: right; margin-bottom: 5mm; }
+  .to { text-align: left; margin-bottom: 5mm; line-height: 1.9; }
+  .to .fill.line { width: 80mm; display: block; }
+  .subject { font-weight: 600; margin-bottom: 5mm; text-align: left; }
+  .letter p { margin-bottom: 3mm; }
+  .sign { margin-top: 5mm; text-align: left; }
+  .sign .space { height: 13mm; }
+  .encl { margin-top: 6mm; font-size: 10pt; text-align: left; }
+
+  /* Proposal hero */
+  .hero { text-align: center; padding: 2mm 0 4mm; border-bottom: 0.3mm solid var(--ink); margin-bottom: 4mm; }
+  .hero .kicker { font-size: 10pt; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); }
+  .hero h1 { font-size: 34pt; font-weight: 700; letter-spacing: 0.04em; margin: 1.5mm 0 0; line-height: 1.1; }
+  .hero h1 span { color: var(--red); }
+  .hero .sub { font-size: 13pt; font-weight: 600; margin-top: 1mm; }
+  .hero .tag { font-size: 12pt; font-style: italic; color: var(--red-dark); margin-top: 1.5mm; }
+
+  .pitch { background: var(--light); border-left: 1.4mm solid var(--red); padding: 3mm 4.5mm; margin: 0 0 4mm; font-size: 11pt; line-height: 1.55; }
+  .pitch p:last-child { margin-bottom: 0; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin-bottom: 4mm; }
+  .stats div { border: 0.3mm solid var(--rule); border-top: 1mm solid var(--red); padding: 2mm 2mm 1.6mm; text-align: center; }
+  .stats b { display: block; font-size: 17pt; line-height: 1.1; }
+  .stats span { font-size: 9pt; color: var(--muted); }
+
+  /* Architecture strip */
+  .arch { display: flex; align-items: stretch; gap: 0; margin: 2mm 0 2mm; break-inside: avoid; }
+  .arch .node { flex: 1; border: 0.3mm solid var(--ink); padding: 2.2mm 2mm; text-align: center; background: #fff; }
+  .arch .node b { display: block; font-size: 11pt; letter-spacing: 0.08em; color: var(--red-dark); }
+  .arch .node span { font-size: 8.8pt; line-height: 1.3; display: block; margin-top: 0.6mm; }
+  .arch .arrow { width: 7mm; display: flex; align-items: center; justify-content: center; }
+  .arch-note { font-size: 9.4pt; color: var(--muted); text-align: center; margin-bottom: 3mm; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 3.5mm; text-align: left; }
+  td, th { border: 0.25mm solid var(--rule); padding: 1.5mm 2.4mm; vertical-align: top; font-size: 10pt; line-height: 1.4; }
+  th { background: var(--light); font-weight: 600; }
+  tr { break-inside: avoid; }
+  thead { display: table-header-group; }
+  table.kv td:first-child { width: 40mm; font-weight: 600; background: var(--light); }
+  td.time { white-space: nowrap; font-weight: 600; width: 25mm; }
+  td.sess { font-weight: 600; width: 38mm; }
+  tr.break td { background: var(--light); font-style: italic; }
+  td.c { text-align: center; }
+
+  h2 {
+    font-size: 12.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    margin: 5.5mm 0 2.6mm; padding-bottom: 1mm; border-bottom: 0.3mm solid var(--ink);
+    break-after: avoid; text-align: left;
+  }
+
+  /* Day blocks */
+  .day { margin-bottom: 4.5mm; break-inside: avoid; }
+  .day .bar { display: flex; align-items: stretch; break-after: avoid; }
+  .day .num { background: var(--red); color: #fff; font-weight: 700; font-size: 10pt; letter-spacing: 0.12em; text-transform: uppercase; padding: 2mm 3.5mm; display: flex; align-items: center; white-space: nowrap; }
+  .day .head { flex: 1; background: var(--light); padding: 1.4mm 3.5mm; text-align: left; }
+  .day .head b { font-size: 12pt; display: block; }
+  .day .head span { font-size: 9.6pt; font-style: italic; color: var(--muted); }
+  .day table { margin-bottom: 0; }
+  .day .out { border: 0.25mm solid var(--rule); border-top: none; background: var(--tint); padding: 1.6mm 2.6mm; font-size: 10pt; text-align: left; }
+  .day .out b { color: var(--red-dark); }
+
+  .signoff { display: flex; justify-content: space-between; margin-top: 18mm; break-inside: avoid; text-align: left; }
+  .signoff div { width: 74mm; border-top: 0.3mm solid var(--ink); padding-top: 1.6mm; font-size: 10.2pt; }
+  .signoff .role { font-style: italic; color: var(--muted); display: block; }
+</style>
+</head>
+<body>
+
+<!-- ===================== Covering letter ===================== -->
+<div class="letterhead">
+  <img src="../assets/bgiem-logo.png" alt="BGIEM logo">
+  <div>
+    <div class="inst">Baderia Global Institute of Engineering &amp; Management</div>
+    <div class="addr">Global Square, Patan Bypass, Raigwan, Jabalpur (M.P.)</div>
+    <div class="addr">Approved by AICTE, New Delhi &nbsp;|&nbsp; Affiliated to RGPV, Bhopal</div>
+  </div>
+</div>
+<div class="double-rule"></div>
+
+<div class="letter">
+  <div class="dateline">Date: {{DATE}}</div>
+
+  <div class="to">
+    To,<br>
+    The Principal,<br>
+    {{SCHOOL_NAME}}<br>
+    {{SCHOOL_CITY}}
+  </div>
+
+  <div class="subject">Subject: Proposal for “Code the Voice”, a three-day AI Voice Agent Bootcamp for students of Classes {{CLASS_FROM}} to {{CLASS_TO}}</div>
+
+  <p>Respected Sir/Madam,</p>
+
+  <p>Baderia Global Institute of Engineering &amp; Management (BGIEM), Jabalpur, is pleased to propose <b>Code the Voice</b>, a three-day hands-on bootcamp in which students build their own voice AI agent from scratch.</p>
+
+  <p>Voice assistants are now part of everyday life, and companies in banking, healthcare and customer service are using AI agents that can hold a real conversation. In this bootcamp, students learn how such systems work by building one themselves. Each team writes a working assistant that listens to a question, thinks with a large language model, fetches live information from the internet and replies aloud in English or Hindi. On the last day, the teams present their agents to the school’s teachers.</p>
+
+  <p>The bootcamp runs for three hours a day over three days in the school’s computer lab. It is conducted by our trainers free of cost, as part of the Institute’s school outreach programme.</p>
+
+  <p>The detailed proposal is enclosed for your kind consideration. We would be glad to discuss it with you and to fix dates that suit the school.</p>
+
+  <p>Thanking you,</p>
+
+  <div class="sign">
+    Yours sincerely,
+    <div class="space"></div>
+    <b>Dr. Niharika Yadav</b><br>
+    Deputy Director<br>
+    Baderia Global Institute of Engineering &amp; Management, Jabalpur
+  </div>
+
+  <div class="encl"><b>Enclosure:</b> Detailed proposal for the Code the Voice bootcamp</div>
+</div>
+
+<!-- ===================== Proposal ===================== -->
+<div class="page-break"></div>
+
+<div class="hero">
+  <div class="kicker">Workshop Proposal</div>
+  <h1>CODE THE <span>VOICE</span></h1>
+  <div class="sub">The 3-Day AI Voice Agent Bootcamp</div>
+  <div class="tag">Build an AI that listens, thinks and talks back.</div>
+</div>
+
+<div class="pitch">
+  <p>Siri, Alexa and Google Assistant were built by large teams of engineers. In three days, your students will build their own.</p>
+  <p>In Code the Voice, every team writes a working voice AI agent from the first line of code. It hears a question, thinks with a real large language model, pulls live data from the internet and answers out loud, in English or Hindi. There are no ready-made apps and no drag-and-drop blocks. It is real code and real AI, and every team ends with a finished product to demonstrate on the last day.</p>
+</div>
+
+<div class="stats">
+  <div><b>3</b><span>days</span></div>
+  <div><b>9</b><span>hours of hands-on coding</span></div>
+  <div><b>6</b><span>build levels</span></div>
+  <div><b>1</b><span>working AI agent per team</span></div>
+</div>
+
+<h2>1. The Bootcamp at a Glance</h2>
+<table class="kv">
+  <tr><td>Programme</td><td>Code the Voice: The 3-Day AI Voice Agent Bootcamp</td></tr>
+  <tr><td>Proposed for</td><td>{{SCHOOL_NAME}}</td></tr>
+  <tr><td>Participants</td><td>Students of Classes {{CLASS_FROM}} to {{CLASS_TO}}; up to 40 students per batch, working in teams of 2 or 3</td></tr>
+  <tr><td>Duration</td><td>3 days, 3 hours a day (9 hours in all). The days can be consecutive or spread over one or two weeks.</td></tr>
+  <tr><td>Venue</td><td>School computer lab</td></tr>
+  <tr><td>Format</td><td>Hands-on coding bootcamp, guided step by step by trainers and student mentors</td></tr>
+  <tr><td>Prerequisite</td><td>Basic knowledge of any programming language. No prior knowledge of AI is needed.</td></tr>
+  <tr><td>Technology</td><td>JavaScript in Google Chrome, with starter code provided by BGIEM</td></tr>
+  <tr><td>Lead trainer</td><td>Mr. Deepak Vishwakarma, Lead Corporate Trainer, BGIEM</td></tr>
+  <tr><td>Cost to the school</td><td>Nil</td></tr>
+</table>
+
+<h2>2. Why This Bootcamp</h2>
+<ul>
+  <li><b>Voice AI is where the industry is heading.</b> Banks, hospitals, airlines and online stores now use AI agents that talk to customers. Students build a small version of the same technology.</li>
+  <li><b>It shows the whole picture.</b> Students use AI every day but rarely see how an AI product is put together. Building an agent from start to finish covers speech, language models, APIs, prompts and safety in one project.</li>
+  <li><b>It stretches students who can already code.</b> The project goes well beyond classroom exercises, and the finished agent can be shown at science exhibitions, hackathons and in college applications.</li>
+  <li><b>It supports the school curriculum.</b> CBSE offers Artificial Intelligence as a subject. The bootcamp turns that theory into working practice.</li>
+</ul>
+
+<h2>3. What Students Will Build</h2>
+<p>Every team builds a voice AI agent that runs in the web browser. It follows the same four-step design used in commercial voice agents:</p>
+
+<div class="arch">
+  <div class="node"><b>LISTEN</b><span>Speech-to-text with the Web Speech API</span></div>
+  <div class="arrow"><svg width="16" height="12" viewBox="0 0 16 12"><path d="M0 6h13M9 1l5 5-5 5" fill="none" stroke="#B5161C" stroke-width="1.6"/></svg></div>
+  <div class="node"><b>THINK</b><span>JavaScript rules and a large language model (Google Gemini)</span></div>
+  <div class="arrow"><svg width="16" height="12" viewBox="0 0 16 12"><path d="M0 6h13M9 1l5 5-5 5" fill="none" stroke="#B5161C" stroke-width="1.6"/></svg></div>
+  <div class="node"><b>ACT</b><span>Live data from web APIs, such as weather and Wikipedia</span></div>
+  <div class="arrow"><svg width="16" height="12" viewBox="0 0 16 12"><path d="M0 6h13M9 1l5 5-5 5" fill="none" stroke="#B5161C" stroke-width="1.6"/></svg></div>
+  <div class="node"><b>SPEAK</b><span>Text-to-speech with the Speech Synthesis API</span></div>
+</div>
+<p class="arch-note">The language model is reached through BGIEM’s lab server, so students never handle API keys.</p>
+
+<p>On the last day, each team turns its agent into a product for a real purpose of its own choice, for example:</p>
+<ul>
+  <li>a <b>school helpdesk</b> that answers questions about timings, events and rules;</li>
+  <li>an <b>exam revision tutor</b> that asks questions and explains answers;</li>
+  <li>a <b>city guide for Jabalpur</b> that talks about places, weather and history;</li>
+  <li>a <b>career counsellor</b> that explains courses and career paths.</li>
+</ul>
+
+<!-- ===================== Day-wise programme ===================== -->
+<h2>4. Day-wise Programme</h2>
+
+<div class="day">
+  <div class="bar"><div class="num">Day 1</div><div class="head"><b>Make It Listen</b><span>Speech in, speech out, and a rule-based brain</span></div></div>
+  <table>
+    <tr><td class="time">0:00 – 0:30</td><td class="sess">Kick-off</td><td>Live demonstration of a finished agent. How voice agents work: listen, think, act and speak. Teams are formed and the starter code is set up.</td></tr>
+    <tr><td class="time">0:30 – 1:20</td><td class="sess">Level 1: Voice Loop</td><td>Capture speech with the Web Speech API, convert it to text and speak a reply with the Speech Synthesis API. Choose voices for English and Hindi.</td></tr>
+    <tr class="break"><td class="time">1:20 – 1:30</td><td colspan="2">Break</td></tr>
+    <tr><td class="time">1:30 – 2:40</td><td class="sess">Level 2: Rule-Based Brain</td><td>Write intents in JavaScript for commands such as the time, the date, a timer and calculations. Handle unknown questions with fallback replies.</td></tr>
+    <tr><td class="time">2:40 – 3:00</td><td class="sess">Day Challenge</td><td>Each team adds three commands of its own and demonstrates them.</td></tr>
+  </table>
+  <div class="out"><b>Day 1 output:</b> an assistant that listens, answers fixed commands and speaks.</div>
+</div>
+
+<div class="day">
+  <div class="bar"><div class="num">Day 2</div><div class="head"><b>Make It Smart</b><span>Live tools and an AI brain with its own personality</span></div></div>
+  <table>
+    <tr><td class="time">0:00 – 0:15</td><td class="sess">Recap</td><td>Quick review and a debugging clinic for any team that needs help.</td></tr>
+    <tr><td class="time">0:15 – 1:20</td><td class="sess">Level 3: Live Tools</td><td>How APIs work: fetch requests, JSON and asynchronous code. The agent reports the weather of any city through the Open-Meteo APIs and reads short facts from Wikipedia.</td></tr>
+    <tr class="break"><td class="time">1:20 – 1:30</td><td colspan="2">Break</td></tr>
+    <tr><td class="time">1:30 – 2:30</td><td class="sess">Level 4: AI Brain</td><td>What a large language model is, and how tokens and context work. Connect the agent to Google Gemini through the BGIEM lab server, and write a system prompt that gives it a name, a personality and limits.</td></tr>
+    <tr><td class="time">2:30 – 3:00</td><td class="sess">Guardrail Challenge</td><td>Teams try to break each other’s agents with tricky questions, then strengthen their own guardrails.</td></tr>
+  </table>
+  <div class="out"><b>Day 2 output:</b> an agent with live data, its own personality and safety guardrails.</div>
+</div>
+
+<div class="day">
+  <div class="bar"><div class="num">Day 3</div><div class="head"><b>Make It an Agent</b><span>Agent skills, a finished product and Demo Day</span></div></div>
+  <table>
+    <tr><td class="time">0:00 – 0:50</td><td class="sess">Level 5: Agent Skills</td><td>Function calling, in which the AI decides which tool to use and returns the details as JSON. Conversation memory, switching between English and Hindi, a wake word, and stopping speech when the user interrupts.</td></tr>
+    <tr><td class="time">0:50 – 1:40</td><td class="sess">Level 6: Product Build</td><td>Each team turns its agent into a product for a real purpose and designs its interface.</td></tr>
+    <tr class="break"><td class="time">1:40 – 1:50</td><td colspan="2">Break</td></tr>
+    <tr><td class="time">1:50 – 2:10</td><td class="sess">Testing</td><td>Teams test each other’s agents for accuracy, response time and guardrails, and make final fixes.</td></tr>
+    <tr><td class="time">2:10 – 2:50</td><td class="sess">Demo Day</td><td>Each team presents its agent live to a panel of the school’s teachers.</td></tr>
+    <tr><td class="time">2:50 – 3:00</td><td class="sess">Closing</td><td>Awards and certificates.</td></tr>
+  </table>
+  <div class="out"><b>Day 3 output:</b> a finished voice AI agent, presented live and published on the BGIEM showcase page.</div>
+</div>
+
+<!-- ===================== Remaining sections ===================== -->
+<h2>5. Learning Outcomes</h2>
+<p>By the end of the bootcamp, students will be able to:</p>
+<ol>
+  <li>explain how a voice AI agent works, from speech recognition to the spoken reply;</li>
+  <li>use the browser’s speech recognition and speech synthesis APIs in JavaScript;</li>
+  <li>call web APIs, work with JSON data and write asynchronous code;</li>
+  <li>connect an application to a large language model and control it with system prompts and guardrails;</li>
+  <li>add agent behaviour such as tool selection, memory and interruption handling;</li>
+  <li>plan, test and present a software product as a team.</li>
+</ol>
+
+<h2>6. What Students Take Home</h2>
+<ul>
+  <li>The complete source code of their agent, with comments.</li>
+  <li>Their agent published on the BGIEM showcase page for one month, so that it opens on any phone.</li>
+  <li>A bootcamp handbook that explains every level step by step.</li>
+  <li>A certificate of completion from BGIEM. The top three teams also receive awards.</li>
+  <li>Four weeks of online doubt support through a Google Classroom managed by the school.</li>
+</ul>
+
+<h2>7. Roles and Responsibilities</h2>
+<table>
+  <thead><tr><th style="width:50%">BGIEM will</th><th>The school is requested to</th></tr></thead>
+  <tbody>
+    <tr><td>
+      <ul>
+        <li>provide the lead trainer, a co-trainer and student mentors;</li>
+        <li>provide the starter code, handbook and the AI lab server, and bear its usage cost;</li>
+        <li>visit the lab three days before the bootcamp to test the setup;</li>
+        <li>bring six spare headsets;</li>
+        <li>provide certificates and awards;</li>
+        <li>share a report with the school within three working days.</li>
+      </ul>
+    </td><td>
+      <ul>
+        <li>make the computer lab available for the three days;</li>
+        <li>ask its IT team to allow the websites listed in Section 8;</li>
+        <li>share the list of participating students one day before;</li>
+        <li>nominate one teacher as coordinator;</li>
+        <li>nominate teachers for the Demo Day panel.</li>
+      </ul>
+    </td></tr>
+  </tbody>
+</table>
+
+<h2>8. Lab Requirements</h2>
+<table class="kv">
+  <tr><td>Computers</td><td>One per team (up to 20 for 40 students), with the latest Google Chrome</td></tr>
+  <tr><td>Headsets</td><td>One headset with a microphone per team, so that the agent does not hear its own voice</td></tr>
+  <tr><td>Internet</td><td>A stable connection; 50 Mbps or more is recommended for 40 users</td></tr>
+  <tr><td>Websites to allow</td><td>api.open-meteo.com, geocoding-api.open-meteo.com, en.wikipedia.org, and the addresses of the BGIEM lab server and the online code editor, which will be shared one week before</td></tr>
+  <tr><td>For the trainer</td><td>Projector, speakers and one microphone</td></tr>
+</table>
+<p class="small">No software needs to be installed. Everything runs in Google Chrome.</p>
+
+<h2>9. Student Safety and Data Privacy</h2>
+<ul>
+  <li>No student creates an account on any AI service, and no API key is shared with students.</li>
+  <li>The AI lab server has usage limits and logs no personal data.</li>
+  <li>Every agent has guardrails in its system prompt, so that it stays on its topic and refuses unsafe requests.</li>
+  <li>Speech recognition in Chrome is processed by Google’s online speech service, so students are told not to share personal information with their agents.</li>
+  <li>Photographs are taken only as per the school’s policy.</li>
+</ul>
+
+<div class="keep">
+<h2>10. Assessment, Certificates and Reporting</h2>
+<p>On Demo Day, a panel of the school’s teachers judges each team out of 100 marks:</p>
+<table>
+  <thead><tr><th>Criterion</th><th style="width:24mm">Marks</th></tr></thead>
+  <tbody>
+    <tr><td>Working agent: listens, answers correctly and speaks</td><td class="c">30</td></tr>
+    <tr><td>Use of AI concepts: language model, tools, guardrails and memory</td><td class="c">25</td></tr>
+    <tr><td>Usefulness and originality of the idea</td><td class="c">15</td></tr>
+    <tr><td>Quality of code</td><td class="c">15</td></tr>
+    <tr><td>Presentation</td><td class="c">15</td></tr>
+  </tbody>
+</table>
+<p>All participants who attend the three days receive certificates of completion, and the top three teams receive awards. Within three working days, BGIEM shares a report with the school covering attendance, photographs, the list of projects and a summary of student feedback.</p>
+</div>
+
+<h2>11. Cost to the School</h2>
+<p>The bootcamp is offered free of cost. BGIEM bears all expenses, including the trainers, materials, the AI lab server, certificates and awards. The school only provides the lab and the facilities listed in Section 8.</p>
+
+<h2>12. About the Institute</h2>
+<p>Baderia Global Institute of Engineering &amp; Management, Jabalpur, was established in 2009. It is approved by AICTE and affiliated to Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal, and offers programmes in engineering and management, including B.Tech in Computer Science and Engineering with specialisation in Artificial Intelligence and Machine Learning. Through its school outreach programme, the Institute brings practical technology workshops to school students.</p>
+
+<div class="signoff">
+  <div><b>Mr. Deepak Vishwakarma</b><span class="role">Lead Corporate Trainer, BGIEM (Prepared by)</span></div>
+  <div><b>Dr. Niharika Yadav</b><span class="role">Deputy Director, BGIEM (Approved by)</span></div>
+</div>
+
+</body>
+</html>

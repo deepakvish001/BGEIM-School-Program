@@ -32,6 +32,21 @@ const DOCS = [
     subject: 'Proposal for a hands-on AI workshop for students of Classes 8 to 12',
     keywords: ['BGIEM', 'AI workshop', 'proposal', name],
   })),
+  {
+    // Common proposal: school, classes and date are left blank to be filled in by hand.
+    src: 'code-the-voice-proposal.html',
+    vars: {
+      DATE: '<span class="fill mid"></span>',
+      SCHOOL_NAME: '<span class="fill long"></span>',
+      SCHOOL_CITY: '<span class="fill long"></span>',
+      CLASS_FROM: '<span class="fill short"></span>',
+      CLASS_TO: '<span class="fill short"></span>',
+    },
+    out: 'BGIEM_Code_the_Voice_Proposal.pdf',
+    title: 'Code the Voice - The 3-Day AI Voice Agent Bootcamp - Proposal',
+    subject: 'Proposal for a three-day hands-on AI voice agent bootcamp for school students',
+    keywords: ['BGIEM', 'Code the Voice', 'AI voice agent', 'bootcamp', 'proposal'],
+  },
 ];
 
 (async () => {
