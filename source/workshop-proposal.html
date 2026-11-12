@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workshop Proposal – {{SCHOOL_NAME}} | BGIEM</title>
+<style>
+  @font-face { font-family: "Source Serif 4"; font-weight: 400; font-style: normal; src: url("../assets/fonts/source-serif-4-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 400; font-style: italic; src: url("../assets/fonts/source-serif-4-latin-400-italic.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 600; font-style: normal; src: url("../assets/fonts/source-serif-4-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 700; font-style: normal; src: url("../assets/fonts/source-serif-4-latin-700-normal.woff2") format("woff2"); }
+
+  :root {
+    --ink: #1A1A1A;
+    --muted: #555555;
+    --rule: #9A9A9A;
+    --light: #F2F2F2;
+    --red: #E31E24; /* from the BGIEM logo */
+  }
+
+  @page {
+    size: A4;
+    margin: 22mm 20mm 20mm 20mm;
+    @top-left {
+      content: "Baderia Global Institute of Engineering & Management, Jabalpur";
+      font: italic 8.5pt "Source Serif 4", serif; color: var(--muted);
+      vertical-align: bottom; padding-bottom: 4mm;
+    }
+    @top-right {
+      content: "Workshop Proposal: {{SCHOOL_SHORT}}";
+      font: italic 8.5pt "Source Serif 4", serif; color: var(--muted);
+      vertical-align: bottom; padding-bottom: 4mm;
+    }
+    @bottom-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font: 8.5pt "Source Serif 4", serif; color: var(--muted);
+      vertical-align: top; padding-top: 6mm;
+    }
+  }
+  @page :first {
+    margin-top: 16mm;
+    @top-left { content: none; }
+    @top-right { content: none; }
+    @bottom-center { content: none; }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0; background: #fff; color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: 10.8pt; line-height: 1.5;
+    text-align: justify; hyphens: none;
+  }
+  p { margin: 0 0 2.4mm; }
+  ul, ol { margin: 0 0 2.4mm; padding-left: 6mm; }
+  li { margin-bottom: 0.8mm; }
+  b, strong { font-weight: 600; }
+  .small { font-size: 9.6pt; color: var(--muted); }
+  .keep { break-inside: avoid; }
+  .page-break { break-before: page; }
+
+  /* Letterhead */
+  .letterhead { display: flex; align-items: center; gap: 6mm; padding-bottom: 4mm; }
+  .letterhead img { height: 24mm; display: block; }
+  .letterhead .inst { font-size: 16pt; font-weight: 700; line-height: 1.2; text-align: left; }
+  .letterhead .addr { font-size: 10pt; color: var(--muted); margin-top: 1mm; text-align: left; }
+  .double-rule { border-top: 0.6mm solid var(--ink); border-bottom: 0.25mm solid var(--ink); height: 1.4mm; margin-bottom: 6mm; }
+
+  /* Covering letter */
+  .letter { font-size: 10.9pt; line-height: 1.5; }
+  .refline { display: flex; justify-content: space-between; margin-bottom: 5mm; }
+  .to { text-align: left; margin-bottom: 5mm; }
+  .subject { font-weight: 600; margin-bottom: 5mm; text-align: left; }
+  .letter p { margin-bottom: 3mm; }
+  .sign { margin-top: 5mm; text-align: left; }
+  .sign .space { height: 13mm; }
+  .encl { margin-top: 6mm; font-size: 10pt; text-align: left; }
+
+  /* Proposal title */
+  .title-block { text-align: center; margin-bottom: 5mm; }
+  .title-block .kicker { font-size: 10.5pt; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
+  .title-block h1 { font-size: 19pt; font-weight: 700; margin: 1.5mm 0 1mm; line-height: 1.25; }
+  .title-block .sub { font-size: 10.5pt; font-style: italic; color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 3.5mm; text-align: left; }
+  td, th { border: 0.25mm solid var(--rule); padding: 1.5mm 2.4mm; vertical-align: top; font-size: 10pt; line-height: 1.4; }
+  th { background: var(--light); font-weight: 600; }
+  tr { break-inside: avoid; }
+  thead { display: table-header-group; }
+  table.kv td:first-child { width: 42mm; font-weight: 600; background: var(--light); }
+  td.time { white-space: nowrap; font-weight: 600; }
+  tr.break td { background: var(--light); font-style: italic; }
+
+  h2 {
+    font-size: 12.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    margin: 5.5mm 0 2.6mm; padding-bottom: 1mm; border-bottom: 0.3mm solid var(--ink);
+    break-after: avoid; text-align: left;
+  }
+  h3 {
+    font-size: 11pt; font-weight: 700; margin: 3.5mm 0 1.6mm; text-align: left; break-after: avoid;
+  }
+  .track {
+    font-size: 12pt; font-weight: 700; text-align: left; break-after: avoid;
+    background: var(--light); border-left: 1.2mm solid var(--red); padding: 1.6mm 3mm; margin: 5mm 0 2.6mm;
+  }
+  .track span { display: block; font-size: 9.8pt; font-weight: 400; font-style: italic; color: var(--muted); }
+
+  .signoff { display: flex; justify-content: space-between; margin-top: 18mm; break-inside: avoid; text-align: left; }
+  .signoff div { width: 72mm; border-top: 0.3mm solid var(--ink); padding-top: 1.6mm; font-size: 10.2pt; }
+  .signoff .role { font-style: italic; color: var(--muted); display: block; }
+</style>
+</head>
+<body>
+
+<!-- ===================== Covering letter ===================== -->
+<div class="letterhead">
+  <img src="../assets/bgiem-logo.png" alt="BGIEM logo">
+  <div>
+    <div class="inst">Baderia Global Institute of Engineering &amp; Management</div>
+    <div class="addr">Global Square, Patan Bypass, Raigwan, Jabalpur (M.P.)</div>
+    <div class="addr">Approved by AICTE, New Delhi &nbsp;|&nbsp; Affiliated to RGPV, Bhopal</div>
+  </div>
+</div>
+<div class="double-rule"></div>
+
+<div class="letter">
+  <div class="refline"><span>Ref. No.: BGIEM/SOP/2026-27/______</span><span>Date: 12 November 2026</span></div>
+
+  <div class="to">
+    To,<br>
+    The Principal,<br>
+    {{SCHOOL_NAME}},<br>
+    Jabalpur (M.P.)
+  </div>
+
+  <div class="subject">Subject: Proposal for a hands-on AI workshop for students of Classes 8 to 12</div>
+
+  <p>Respected Sir/Madam,</p>
+
+  <p>Baderia Global Institute of Engineering &amp; Management (BGIEM), Jabalpur, would like to propose a hands-on workshop on Artificial Intelligence for the students of {{SCHOOL_NAME}}.</p>
+
+  <p>Students today use AI apps almost every day, but very few get the chance to build something with AI themselves. This workshop is designed to give them that experience. Students of Classes 11 and 12 will build a working voice-based AI assistant that listens, understands and replies in English and Hindi. Students of Classes 8 to 10 will train their own AI model that recognises hand signs and speaks them aloud. Every team leaves with a working project that it can continue to improve after the workshop.</p>
+
+  <p>The workshop will be conducted by our trainers in the school’s computer lab, and each batch will take three hours. It is offered free of cost as part of the Institute’s school outreach programme.</p>
+
+  <p>The detailed proposal is enclosed for your kind consideration. We would be grateful for an opportunity to discuss it with you and to fix a date that suits the school.</p>
+
+  <p>Thanking you,</p>
+
+  <div class="sign">
+    Yours sincerely,
+    <div class="space"></div>
+    <b>Dr. Niharika Yadav</b><br>
+    Deputy Director<br>
+    Baderia Global Institute of Engineering &amp; Management, Jabalpur
+  </div>
+
+  <div class="encl"><b>Enclosure:</b> Detailed workshop proposal</div>
+</div>
+
+<!-- ===================== Proposal ===================== -->
+<div class="page-break"></div>
+<div class="title-block">
+  <div class="kicker">Workshop Proposal</div>
+  <h1>AI Innovation Lab: Build Your Own AI</h1>
+  <div class="sub">A hands-on workshop for students of Classes 8 to 12, proposed to {{SCHOOL_NAME}}, Jabalpur</div>
+</div>
+
+<h2>1. About the Institute</h2>
+<p>Baderia Global Institute of Engineering &amp; Management, Jabalpur, was established in 2009. It is approved by AICTE and affiliated to Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal. The Institute offers undergraduate, postgraduate and diploma programmes in engineering and management, including B.Tech in Computer Science and Engineering with specialisation in Artificial Intelligence and Machine Learning. Through its school outreach programme, the Institute conducts workshops that introduce school students to new technologies through practical work.</p>
+
+<h2>2. Need for the Workshop</h2>
+<ul>
+  <li>AI has become a part of school education. CBSE offers Artificial Intelligence as a subject, and students are expected to understand how AI systems work, not only how to use them.</li>
+  <li>Most students use AI chat apps but rarely see what is inside an AI system: the data, the model, the prompt and the code. Building one from start to finish makes these ideas clear.</li>
+  <li>Voice assistants and computer vision are two of the fastest-growing areas of AI. Building small versions of both gives students a practical start in these fields.</li>
+  <li>Working in a team on a real project builds coding, problem-solving and presentation skills, and gives students a project they can show in exhibitions and future applications.</li>
+</ul>
+
+<h2>3. Objectives</h2>
+<ol>
+  <li>To give students practical experience of building a working AI application.</li>
+  <li>To explain the core ideas of AI, such as training data, models, prompts and APIs, through hands-on work.</li>
+  <li>To improve students’ coding and logical thinking through a real project.</li>
+  <li>To develop the habit of using AI safely and responsibly.</li>
+  <li>To introduce students to careers in computer science and Artificial Intelligence.</li>
+</ol>
+
+<h2>4. Workshop at a Glance</h2>
+<table class="kv">
+  <tr><td>Workshop</td><td>AI Innovation Lab: Build Your Own AI</td></tr>
+  <tr><td>Tracks</td><td>Track A, Build Your Own Voice AI Agent: Classes 11 and 12<br>Track B, Sign2Speak: Classes 8 to 10</td></tr>
+  <tr><td>Batch size</td><td>Up to 40 students per batch; teams of 2 or 3 in Track A and 3 or 4 in Track B</td></tr>
+  <tr><td>Duration</td><td>3 hours per batch; both tracks can be held on the same day or on separate days</td></tr>
+  <tr><td>Venue</td><td>School computer lab</td></tr>
+  <tr><td>Mode</td><td>Fully hands-on, with live coding guided by the trainers</td></tr>
+  <tr><td>Prerequisites</td><td>Track A: basic knowledge of any programming language. Track B: none.</td></tr>
+  <tr><td>Conducted by</td><td>A lead trainer, a co-trainer and student mentors from BGIEM, with one mentor for every three or four teams</td></tr>
+  <tr><td>Cost to the school</td><td>Nil</td></tr>
+</table>
+
+<!-- ===================== Track A ===================== -->
+<div class="track">5. Track A: Build Your Own Voice AI Agent<span>For students of Classes 11 and 12</span></div>
+<p>Each team builds a voice assistant that runs in the web browser. The assistant listens to the user, understands the request, fetches live information when needed and replies in a natural voice, in English or Hindi. Students start from starter code provided by BGIEM and add one capability at a time. They learn the same architecture that is used in commercial voice agents.</p>
+
+<h3>How the assistant works</h3>
+<table>
+  <thead><tr><th style="width:24mm">Part</th><th>What it does</th><th style="width:62mm">Technology used</th></tr></thead>
+  <tbody>
+    <tr><td><b>Listen</b></td><td>Converts the user’s speech into text</td><td>Web Speech API in Google Chrome</td></tr>
+    <tr><td><b>Think</b></td><td>Decides how to respond</td><td>Rules written in JavaScript, and then a large language model (Google Gemini) through BGIEM’s lab server</td></tr>
+    <tr><td><b>Act</b></td><td>Fetches live information when needed</td><td>Free public APIs: Open-Meteo for weather and Wikipedia for facts</td></tr>
+    <tr><td><b>Speak</b></td><td>Reads the reply aloud</td><td>Speech Synthesis API in the browser</td></tr>
+  </tbody>
+</table>
+
+<h3>Build levels</h3>
+<table>
+  <thead><tr><th style="width:30mm">Level</th><th>What students build</th><th style="width:52mm">Concepts learnt</th></tr></thead>
+  <tbody>
+    <tr><td><b>1. Voice loop</b></td><td>An assistant that listens through the microphone and speaks back what it heard</td><td>Speech-to-text, text-to-speech, browser APIs and events</td></tr>
+    <tr><td><b>2. Rule-based brain</b></td><td>Replies to fixed commands such as the time, the date, a timer and school information</td><td>Intents, conditions and string matching in JavaScript</td></tr>
+    <tr><td><b>3. Tools</b></td><td>Live answers from the internet: the weather of any city and short facts from Wikipedia</td><td>APIs, HTTP requests, JSON and asynchronous code</td></tr>
+    <tr><td><b>4. AI brain</b></td><td>A large language model connected through the BGIEM lab server, with a system prompt that gives the assistant a name, a role and limits</td><td>Large language models, system prompts and guardrails</td></tr>
+    <tr><td><b>5. Advanced features</b></td><td>Memory of the conversation, switching between English and Hindi, and stopping speech when the user interrupts</td><td>Context, state and turn-taking</td></tr>
+    <tr><td><b>6. Demo Day</b></td><td>Each team presents an assistant built for a purpose of its choice, such as a school helpdesk, an exam tutor or a city guide</td><td>Product thinking and presentation</td></tr>
+  </tbody>
+</table>
+
+<h3>Session plan</h3>
+<table>
+  <thead><tr><th style="width:28mm">Time</th><th>Activity</th></tr></thead>
+  <tbody>
+    <tr><td class="time">0:00 – 0:15</td><td>Opening: live demonstration of a voice assistant and how it works</td></tr>
+    <tr><td class="time">0:15 – 0:40</td><td>Level 1: Voice loop</td></tr>
+    <tr><td class="time">0:40 – 1:05</td><td>Level 2: Rule-based brain</td></tr>
+    <tr class="break"><td class="time">1:05 – 1:15</td><td>Break</td></tr>
+    <tr><td class="time">1:15 – 1:45</td><td>Level 3: Tools (weather and Wikipedia)</td></tr>
+    <tr><td class="time">1:45 – 2:15</td><td>Level 4: AI brain, system prompt and guardrails</td></tr>
+    <tr><td class="time">2:15 – 2:30</td><td>Level 5: Memory, Hindi and interruption handling</td></tr>
+    <tr><td class="time">2:30 – 2:55</td><td>Demo Day: team presentations and judging</td></tr>
+    <tr><td class="time">2:55 – 3:00</td><td>Closing and certificates</td></tr>
+  </tbody>
+</table>
+
+<!-- ===================== Track B ===================== -->
+<div class="track">6. Track B: Sign2Speak<span>For students of Classes 8 to 10</span></div>
+<p>Each team trains its own AI model to recognise hand signs using the webcam, and then builds a web app that speaks the recognised sign aloud, for example “Namaste”, “Thank you” or “Help”. The project shows how AI learns from data and how a trained model is used inside an application. It also has a social purpose, since a tool of this kind can help people with speech or hearing difficulties.</p>
+
+<h3>Build levels</h3>
+<table>
+  <thead><tr><th style="width:30mm">Level</th><th>What students build</th><th style="width:52mm">Concepts learnt</th></tr></thead>
+  <tbody>
+    <tr><td><b>1. Data collection</b></td><td>Images of five hand signs and a “Nothing” class, recorded with the webcam in Teachable Machine</td><td>Training data, classes, and why a “none” class is needed</td></tr>
+    <tr><td><b>2. Training and testing</b></td><td>A trained model, tested with different hands, lighting and backgrounds</td><td>Accuracy, bias and overfitting</td></tr>
+    <tr><td><b>3. Improvement and export</b></td><td>A better model trained on varied data, exported as a TensorFlow.js model with a shareable link</td><td>Data quality and deployment</td></tr>
+    <tr><td><b>4. Sign2Speak app</b></td><td>A web app that shows the camera, the predicted sign and a confidence bar, and speaks the word aloud</td><td>Using a model in code, confidence threshold and text-to-speech</td></tr>
+    <tr><td><b>5. Gesture game</b></td><td>Rock, Paper, Scissors against the computer, played with hand gestures</td><td>Reusing a model in a new application</td></tr>
+    <tr><td><b>6. Demo Day</b></td><td>Teams present their apps</td><td>Presentation</td></tr>
+  </tbody>
+</table>
+
+<h3>Session plan</h3>
+<table>
+  <thead><tr><th style="width:28mm">Time</th><th>Activity</th></tr></thead>
+  <tbody>
+    <tr><td class="time">0:00 – 0:15</td><td>Opening: live demonstration and how machines learn from examples</td></tr>
+    <tr><td class="time">0:15 – 0:45</td><td>Level 1: Data collection</td></tr>
+    <tr><td class="time">0:45 – 1:05</td><td>Level 2: Training and testing</td></tr>
+    <tr class="break"><td class="time">1:05 – 1:15</td><td>Break</td></tr>
+    <tr><td class="time">1:15 – 1:30</td><td>Level 3: Improvement and export</td></tr>
+    <tr><td class="time">1:30 – 2:10</td><td>Level 4: Sign2Speak app</td></tr>
+    <tr><td class="time">2:10 – 2:30</td><td>Level 5: Gesture game</td></tr>
+    <tr><td class="time">2:30 – 2:55</td><td>Demo Day: team presentations and judging</td></tr>
+    <tr><td class="time">2:55 – 3:00</td><td>Closing and certificates</td></tr>
+  </tbody>
+</table>
+
+<!-- ===================== 7 onwards ===================== -->
+<h2>7. Learning Outcomes</h2>
+<p>After the workshop, students of <b>Track A</b> will be able to:</p>
+<ul>
+  <li>explain how a voice assistant works, from speech input to spoken reply;</li>
+  <li>use browser APIs and public web APIs in JavaScript, and handle JSON data;</li>
+  <li>connect an application to a large language model and control it with a system prompt and guardrails.</li>
+</ul>
+<p>Students of <b>Track B</b> will be able to:</p>
+<ul>
+  <li>collect training data and train an image recognition model;</li>
+  <li>test a model for accuracy and bias, and improve it with better data;</li>
+  <li>use a trained model inside a working web application.</li>
+</ul>
+<p>Students of both tracks will understand the basic rules of safe and responsible use of AI.</p>
+
+<h2>8. What Students Take Home</h2>
+<ul>
+  <li>Their complete working project: the source code of the voice assistant (Track A), or the model link and the app (Track B).</li>
+  <li>A lab manual with step-by-step instructions, so that they can continue the project at home or in the school lab.</li>
+  <li>A certificate of participation from BGIEM. The top three teams in each track also receive awards.</li>
+</ul>
+
+<h2>9. Responsibilities</h2>
+<table>
+  <thead><tr><th style="width:50%">BGIEM will</th><th>The school is requested to</th></tr></thead>
+  <tbody>
+    <tr><td>
+      <ul>
+        <li>provide the lead trainer, co-trainer and student mentors;</li>
+        <li>provide the starter code, lab manual and worksheets;</li>
+        <li>provide the AI lab server for Track A;</li>
+        <li>bring spare headsets and webcams;</li>
+        <li>provide certificates and awards;</li>
+        <li>share a workshop report after the workshop.</li>
+      </ul>
+    </td><td>
+      <ul>
+        <li>provide the computer lab and the facilities listed in Section 10;</li>
+        <li>ask its IT team to allow the websites needed for the workshop;</li>
+        <li>share the list of participating students one day before;</li>
+        <li>nominate one teacher as coordinator for the day;</li>
+        <li>nominate teachers for the Demo Day judging panel.</li>
+      </ul>
+    </td></tr>
+  </tbody>
+</table>
+
+<h2>10. Lab and Technical Requirements</h2>
+<table>
+  <thead><tr><th style="width:32mm">Item</th><th>Track A (Classes 11 and 12)</th><th>Track B (Classes 8 to 10)</th></tr></thead>
+  <tbody>
+    <tr><td><b>Computers</b></td><td>One per team, with the latest Google Chrome</td><td>One per team, with the latest Google Chrome</td></tr>
+    <tr><td><b>Audio and video</b></td><td>One headset with microphone per team</td><td>One webcam per team</td></tr>
+    <tr><td><b>Internet</b></td><td colspan="2">Stable connection; 50 Mbps or more is recommended for 40 users</td></tr>
+    <tr><td><b>Websites to be allowed</b></td><td>BGIEM lab server, editor.p5js.org, cdn.jsdelivr.net, api.open-meteo.com, en.wikipedia.org</td><td>teachablemachine.withgoogle.com, editor.p5js.org, cdn.jsdelivr.net</td></tr>
+    <tr><td><b>In the lab</b></td><td colspan="2">Projector, speakers and one microphone for the trainer</td></tr>
+  </tbody>
+</table>
+<p class="small">BGIEM will bring six spare headsets and six spare webcams. The final list of websites will be shared with the school’s IT team one week before the workshop.</p>
+
+<h2>11. Student Safety and Data Privacy</h2>
+<ul>
+  <li>No student creates an account on any AI service, and no API key is given to students. The AI brain in Track A works through BGIEM’s lab server, which has usage limits.</li>
+  <li>Every assistant built in Track A is given guardrails in its system prompt, so that it stays on its topic and refuses unsafe requests.</li>
+  <li>Speech recognition in Google Chrome is processed by Google’s online speech service. Students are told not to share personal information with their assistants.</li>
+  <li>In Track B, the training images stay on the lab computer. Only the trained model is uploaded when a team exports it, and the camera is pointed at the hands.</li>
+  <li>Photographs are taken only as per the school’s policy.</li>
+  <li>Each session ends with a short discussion on the responsible use of AI.</li>
+</ul>
+
+<h2>12. Assessment, Certificates and Reporting</h2>
+<ul>
+  <li>On Demo Day, a panel of school teachers and the BGIEM trainer judges each team out of 100 marks: working project (30), use of AI concepts (25), creativity of the idea (20), code quality or model accuracy (10) and presentation (15).</li>
+  <li>All participants receive certificates, and the top three teams in each track receive awards.</li>
+  <li>Within three working days, BGIEM shares a workshop report with the school. It includes attendance, photographs, the list of projects and a summary of student feedback.</li>
+</ul>
+
+<h2>13. Follow-up After the Workshop</h2>
+<ul>
+  <li>The lab manual and starter code are handed over to the school’s computer teachers, so that the practicals can be repeated with other classes.</li>
+  <li>For four weeks after the workshop, students can get their doubts cleared online through a Google Classroom managed by the school.</li>
+  <li>The best teams are invited to an inter-school AI showcase at the BGIEM campus, where they present their projects and visit the Institute’s labs.</li>
+</ul>
+
+<h2>14. Proposed Timeline</h2>
+<table>
+  <thead><tr><th style="width:42mm">When</th><th>Activity</th></tr></thead>
+  <tbody>
+    <tr><td>On acceptance</td><td>Date, batches and number of students confirmed with the school</td></tr>
+    <tr><td>7 days before</td><td>Website list and lab requirements shared with the school’s IT team</td></tr>
+    <tr><td>3 days before</td><td>BGIEM team visits the lab and tests the computers, internet, headsets and webcams</td></tr>
+    <tr><td>1 day before</td><td>Student list received and teams formed</td></tr>
+    <tr><td>Workshop day</td><td>BGIEM team reaches one hour early to set up the lab</td></tr>
+    <tr><td>Within 3 working days</td><td>Workshop report, certificates and photographs shared with the school</td></tr>
+  </tbody>
+</table>
+<p>The workshop can be held on any working day convenient to the school.</p>
+
+<h2>15. Cost to the School</h2>
+<p>The workshop is offered free of cost. BGIEM bears all expenses, including the trainers, materials, the AI lab server, certificates and awards. The school only provides the lab and the facilities listed in Section 10.</p>
+
+<h2>16. Conclusion</h2>
+<p>We believe this workshop will give the students of {{SCHOOL_NAME}} a real experience of building with AI, and a project they can be proud of. We request the school to consider this proposal and to let us know a suitable date. We will be happy to visit the school to discuss the plan in person.</p>
+<p>For any queries, the school may contact Mr. Deepak Vishwakarma, Trainer and Workshop Coordinator, BGIEM, Mobile: ____________________.</p>
+
+<div class="signoff">
+  <div><b>Mr. Deepak Vishwakarma</b><span class="role">Trainer and Workshop Coordinator (Prepared by)</span></div>
+  <div><b>Dr. Niharika Yadav</b><span class="role">Deputy Director, BGIEM (Approved by)</span></div>
+</div>
+
+</body>
+</html>

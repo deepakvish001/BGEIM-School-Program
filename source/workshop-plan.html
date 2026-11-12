@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Innovation Lab – Workshop Plan | BGIEM</title>
+<style>
+  @font-face { font-family: "Source Serif 4"; font-weight: 400; font-style: normal; src: url("../assets/fonts/source-serif-4-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 400; font-style: italic; src: url("../assets/fonts/source-serif-4-latin-400-italic.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 600; font-style: normal; src: url("../assets/fonts/source-serif-4-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 700; font-style: normal; src: url("../assets/fonts/source-serif-4-latin-700-normal.woff2") format("woff2"); }
+
+  :root {
+    --ink: #1A1A1A;
+    --muted: #555555;
+    --rule: #9A9A9A;
+    --light: #F2F2F2;
+    --tint: #FCEDED;
+    --red: #E31E24; /* from the BGIEM logo */
+    --red-dark: #B5161C;
+  }
+
+  @page {
+    size: A4;
+    margin: 22mm 20mm 20mm 20mm;
+    @top-left {
+      content: "Baderia Global Institute of Engineering & Management, Jabalpur";
+      font: italic 8.5pt "Source Serif 4", serif; color: var(--muted);
+      vertical-align: bottom; padding-bottom: 4mm;
+    }
+    @top-right {
+      content: "AI Innovation Lab: Workshop Plan";
+      font: italic 8.5pt "Source Serif 4", serif; color: var(--muted);
+      vertical-align: bottom; padding-bottom: 4mm;
+    }
+    @bottom-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font: 8.5pt "Source Serif 4", serif; color: var(--muted);
+      vertical-align: top; padding-top: 6mm;
+    }
+  }
+  @page :first {
+    margin-top: 16mm;
+    @top-left { content: none; }
+    @top-right { content: none; }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0; background: #fff; color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: 10.8pt; line-height: 1.48;
+    text-align: justify; hyphens: none;
+  }
+  p { margin: 0 0 2.4mm; }
+  ul, ol { margin: 0 0 2.4mm; padding-left: 6mm; }
+  li { margin-bottom: 0.7mm; }
+  b, strong { font-weight: 600; }
+  .small { font-size: 9.6pt; color: var(--muted); }
+  .keep { break-inside: avoid; }
+  .page-break { break-before: page; }
+
+  /* Letterhead */
+  .letterhead { display: flex; align-items: center; gap: 6mm; padding-bottom: 4mm; }
+  .letterhead img { height: 24mm; display: block; }
+  .letterhead .inst { font-size: 16pt; font-weight: 700; line-height: 1.2; text-align: left; }
+  .letterhead .addr { font-size: 10pt; color: var(--muted); margin-top: 1mm; text-align: left; }
+  .double-rule { border-top: 0.6mm solid var(--ink); border-bottom: 0.25mm solid var(--ink); height: 1.4mm; margin-bottom: 5mm; }
+
+  .title-block { text-align: center; margin-bottom: 5mm; }
+  .title-block .kicker { font-size: 10.5pt; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
+  .title-block h1 { font-size: 21pt; font-weight: 700; margin: 1.5mm 0 0.5mm; line-height: 1.2; }
+  .title-block .tag { font-size: 12pt; font-weight: 600; color: var(--red-dark); margin-bottom: 1mm; }
+  .title-block .sub { font-size: 10.5pt; font-style: italic; color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 3.5mm; text-align: left; }
+  td, th { border: 0.25mm solid var(--rule); padding: 1.5mm 2.4mm; vertical-align: top; font-size: 10pt; line-height: 1.4; }
+  th { background: var(--light); font-weight: 600; }
+  tr { break-inside: avoid; }
+  thead { display: table-header-group; }
+  table.details td:first-child { width: 40mm; font-weight: 600; background: var(--light); }
+  td.time { white-space: nowrap; font-weight: 600; }
+  td.c { text-align: center; }
+  tr.break td { background: var(--light); font-style: italic; }
+  tr.total td { font-weight: 700; background: var(--light); }
+
+  h2 {
+    font-size: 13pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    margin: 5.5mm 0 2.6mm; padding-bottom: 1mm; border-bottom: 0.3mm solid var(--ink);
+    break-after: avoid; text-align: left;
+  }
+  h3 { font-size: 11.5pt; font-weight: 700; margin: 3mm 0 1.4mm; text-align: left; break-after: avoid; }
+
+  /* Outcomes box on page 1 */
+  .outputs { border: 0.3mm solid var(--ink); border-top: 1.2mm solid var(--red); padding: 2.6mm 4mm 1.6mm; margin: 2mm 0 3mm; break-inside: avoid; }
+  .outputs .head { font-weight: 700; margin-bottom: 1.6mm; text-align: left; }
+  .outputs ol { columns: 2; column-gap: 8mm; margin: 0; padding-left: 5mm; text-align: left; }
+  .outputs li { break-inside: avoid; font-size: 10.2pt; }
+
+  /* Mission cards */
+  .mission { margin-bottom: 5mm; break-inside: avoid; }
+  .mission .bar {
+    display: flex; justify-content: space-between; align-items: baseline;
+    background: var(--light); border-left: 1.2mm solid var(--red); padding: 1.4mm 3mm; margin-bottom: 0;
+    border-top: 0.25mm solid var(--rule); border-right: 0.25mm solid var(--rule);
+  }
+  .mission .bar h3 { margin: 0; font-size: 11.5pt; }
+  .mission .bar .meta { font-size: 9.5pt; font-style: italic; color: var(--muted); white-space: nowrap; }
+  .mission table { margin-bottom: 0; }
+  .mission td:first-child { width: 30mm; font-weight: 600; background: #FAFAFA; }
+  .mission td { text-align: left; }
+  .mission ol, .mission ul { margin: 0; padding-left: 4.6mm; }
+  .mission li { margin-bottom: 0.4mm; }
+  .wow td { background: var(--tint) !important; }
+  .wow td:first-child { color: var(--red-dark); }
+
+  .co { list-style: none; padding-left: 0; }
+
+  /* Worksheet */
+  .ws-box { border: 0.3mm solid var(--ink); padding: 2mm 3.5mm 2.4mm; margin-bottom: 2.6mm; break-inside: avoid; text-align: left; }
+  .ws-box .q { font-weight: 600; margin-bottom: 1mm; }
+  .line { border-bottom: 0.25mm solid #B5B5B5; height: 6.6mm; }
+  .ws-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .ws-grid .ws-box { margin-bottom: 0; }
+
+  .prompt { border-left: 1mm solid var(--red); background: #FAFAFA; padding: 1.8mm 3.2mm; margin: 0 0 2.6mm; text-align: left; break-inside: avoid; font-size: 10pt; }
+  .prompt b { display: block; margin-bottom: 0.4mm; }
+
+  .signoff { display: flex; justify-content: space-between; margin-top: 16mm; break-inside: avoid; text-align: left; }
+  .signoff div { width: 70mm; border-top: 0.3mm solid var(--ink); padding-top: 1.6mm; font-size: 10.2pt; }
+  .signoff .role { font-style: italic; color: var(--muted); display: block; }
+</style>
+</head>
+<body>
+
+<div class="letterhead">
+  <img src="../assets/bgiem-logo.png" alt="BGIEM logo">
+  <div>
+    <div class="inst">Baderia Global Institute of Engineering &amp; Management</div>
+    <div class="addr">Global Square, Patan Bypass, Raigwan, Jabalpur (M.P.)</div>
+    <div class="addr">School Outreach Programme 2026–27</div>
+  </div>
+</div>
+<div class="double-rule"></div>
+
+<div class="title-block">
+  <div class="kicker">Workshop Plan</div>
+  <h1>AI Innovation Lab</h1>
+  <div class="tag">Learn it. Build it. Launch it.</div>
+  <div class="sub">A fully hands-on AI workshop in which every student team builds, tests and presents its own AI project</div>
+</div>
+
+<table class="details">
+  <tr><td>Proposed for</td><td>Billabong High International School, Jabalpur<br>Satya Prakash Public School, Jabalpur</td></tr>
+  <tr><td>Conducted by</td><td>Baderia Global Institute of Engineering &amp; Management, Jabalpur</td></tr>
+  <tr><td>Participants</td><td>Students of Class 8 to Class 12; up to 40 students per batch, working in teams of 3 or 4</td></tr>
+  <tr><td>Duration</td><td>3 hours in the school computer lab (a 2-hour version is given in Section 10)</td></tr>
+  <tr><td>BGIEM team</td><td>One lead trainer, one co-trainer and three or four student mentors from BGIEM</td></tr>
+  <tr><td>Lead trainer</td><td>Mr. Deepak Vishwakarma, Trainer, BGIEM</td></tr>
+</table>
+
+<h2>1. The Idea</h2>
+<p>Most AI sessions in schools end with students having watched a few impressive demonstrations. This workshop is planned the other way round. Students spend almost the entire time at the computers, working in small teams, and by the end of three hours every team has built and presented an AI project of its own.</p>
+<p>Each team works like a young start-up. It picks a real problem from its school or from Jabalpur, studies the problem with AI, builds a working app for it, designs a logo and a poster, plans an automation and finally pitches the whole idea at a Demo Day in front of its teachers. Every AI concept is learnt while doing one of these tasks, at the moment the students need it, rather than in a lecture before it.</p>
+
+<div class="outputs">
+  <div class="head">By the end of the workshop, every team will have:</div>
+  <ol>
+    <li>A machine learning model, trained by the team, that sorts waste and runs on a phone</li>
+    <li>A research notebook on its problem, with a mind map and an AI-made podcast</li>
+    <li>A working web app with a shareable link and a QR code</li>
+    <li>A logo, a poster and a pitch slide for its project</li>
+    <li>An automation plan and an 8-second AI promo video</li>
+    <li>A Demo Day pitch, certificates and a take-home AI Starter Kit</li>
+  </ol>
+</div>
+
+<h2>2. What Makes This Workshop Different</h2>
+<ul>
+  <li><b>Practical from the first minute.</b> About 80 percent of the time is spent on the computers, not on slides.</li>
+  <li><b>Learning by building.</b> Students learn what training data, bias, prompting and automation mean by actually doing them.</li>
+  <li><b>Local and real.</b> The problems come from the students' own school and city, such as waste on campus, the Narmada, traffic at the school gate and the heritage of Jabalpur.</li>
+  <li><b>Something to show at home.</b> Every team leaves with working links that open on any phone.</li>
+  <li><b>Built to continue.</b> The school receives a lab manual, worksheets and a four-week follow-up plan, so the work does not stop when the workshop ends.</li>
+  <li><b>Safe by design.</b> School-managed logins, no personal accounts, and no faces or personal data used in training.</li>
+</ul>
+
+<!-- ===================== 3. Flow ===================== -->
+<h2>3. Workshop Flow</h2>
+<p>The workshop is organised as six missions, followed by a Demo Day. Each mission produces something the team keeps.</p>
+<table>
+  <thead><tr><th style="width:22mm">Time</th><th style="width:40mm">Mission</th><th>What students do</th><th style="width:30mm">Tool</th><th style="width:30mm">Output</th></tr></thead>
+  <tbody>
+    <tr><td class="time">0:00–0:10</td><td><b>Opening:</b> Can AI Read Your Doodles?</td><td>Play Quick, Draw!, play “Real or AI?”, form teams and pick problem cards</td><td>Quick, Draw!</td><td>Teams and problems chosen</td></tr>
+    <tr><td class="time">0:10–0:35</td><td><b>Mission 1:</b> Teach a Machine</td><td>Train a model to sort plastic, paper and organic waste; test it for bias; open it on a phone</td><td>Teachable Machine</td><td>Working waste-sorting model</td></tr>
+    <tr><td class="time">0:35–0:55</td><td><b>Mission 2:</b> Research Like a Scientist</td><td>Study the team’s problem from a source pack; check citations; make a mind map and a podcast</td><td>NotebookLM</td><td>Notebook, mind map, podcast</td></tr>
+    <tr><td class="time">0:55–1:10</td><td><b>Mission 3:</b> Prompt Battle</td><td>Three rounds of prompt challenges on the big screen</td><td>Gemini, Nano Banana</td><td>Leaderboard points</td></tr>
+    <tr class="break"><td class="time">1:10–1:20</td><td colspan="4">Break</td></tr>
+    <tr><td class="time">1:20–1:55</td><td><b>Mission 4:</b> Build the App</td><td>Build, test and improve a web app for the team’s problem; share it through a QR code</td><td>Gemini Canvas</td><td>Web app with a link</td></tr>
+    <tr><td class="time">1:55–2:15</td><td><b>Mission 5:</b> Brand It</td><td>Create a logo, a poster and a pitch slide; write a prompt for the promo video</td><td>Nano Banana, Gemini Canvas</td><td>Logo, poster, slide</td></tr>
+    <tr><td class="time">2:15–2:25</td><td><b>Mission 6:</b> Automate It</td><td>Plan an automation; the best plan is built live by the trainer</td><td>Google Workspace Studio</td><td>Automation plan</td></tr>
+    <tr><td class="time">2:25–2:50</td><td><b>Demo Day</b></td><td>Two-minute pitch per team, app demo, poster and premiere of the team’s AI promo video</td><td>Google Flow (videos made by the co-trainer)</td><td>Pitch and awards</td></tr>
+    <tr><td class="time">2:50–3:00</td><td><b>Closing</b></td><td>AI Safety Pledge, certificates, take-home kit and group photograph</td><td>–</td><td>AI Starter Kit</td></tr>
+  </tbody>
+</table>
+
+<!-- ===================== 4. Missions ===================== -->
+<h2>4. Mission-wise Lab Plan</h2>
+<p>Each mission is written in the form of a lab practical so that the same sheets can later be used by the school’s computer teachers.</p>
+
+<div class="mission">
+  <div class="bar"><h3>Opening: Can AI Read Your Doodles?</h3><span class="meta">10 minutes</span></div>
+  <table>
+    <tr><td>Aim</td><td>To break the ice and show that AI learns from examples.</td></tr>
+    <tr><td>Tools</td><td>Quick, Draw! (quickdraw.withgoogle.com), projector</td></tr>
+    <tr><td>Procedure</td><td><ol>
+      <li>Teams play Quick, Draw! for two minutes and try to make the computer guess their drawings.</li>
+      <li>The trainer explains how the game guesses: it has learnt from millions of doodles drawn by people around the world.</li>
+      <li>“Real or AI?”: six images are shown on screen and teams vote on each one.</li>
+      <li>Each team picks a problem card (Section 5) and chooses a team name.</li>
+    </ol></td></tr>
+    <tr><td>Concept learnt</td><td>AI learns patterns from data.</td></tr>
+    <tr class="wow"><td>Wow moment</td><td>The computer recognises a half-finished drawing within seconds.</td></tr>
+  </table>
+</div>
+
+<div class="mission">
+  <div class="bar"><h3>Mission 1: Teach a Machine</h3><span class="meta">25 minutes</span></div>
+  <table>
+    <tr><td>Aim</td><td>To train an image recognition model and understand how the training data affects the result.</td></tr>
+    <tr><td>Tools</td><td>Teachable Machine (teachablemachine.withgoogle.com, no login needed), webcam, waste items brought by the trainers: plastic bottles, paper and fruit peels or leaves</td></tr>
+    <tr><td>Procedure</td><td><ol>
+      <li>Open Teachable Machine and start a new Image Project (Standard image model).</li>
+      <li>Create three classes: Plastic, Paper and Organic.</li>
+      <li>Hold each item in front of the webcam and record 50 to 100 images per class from different angles.</li>
+      <li>Click <i>Train Model</i> and test the model live with the items.</li>
+      <li>Bias test: show the model an item it has not seen before, such as a bottle of another colour or a crumpled sheet of paper. Note where it fails, add more varied images and train it again.</li>
+      <li>Click <i>Export Model</i> and then <i>Upload my model</i>. Turn the shareable link into a QR code and open the model on a phone.</li>
+    </ol></td></tr>
+    <tr><td>Output</td><td>A working waste-sorting model with a shareable link.</td></tr>
+    <tr><td>Concept learnt</td><td>Training data, classes, accuracy, bias, and why varied data matters.</td></tr>
+    <tr class="wow"><td>Wow moment</td><td>A model the team trained ten minutes ago recognises waste on a phone.</td></tr>
+  </table>
+</div>
+
+<div class="mission">
+  <div class="bar"><h3>Mission 2: Research Like a Scientist</h3><span class="meta">20 minutes</span></div>
+  <table>
+    <tr><td>Aim</td><td>To study a problem from trusted sources using AI, and to check every answer through its citation.</td></tr>
+    <tr><td>Tools</td><td>NotebookLM; a source pack for each problem (three or four articles or PDFs, prepared in advance by the trainers)</td></tr>
+    <tr><td>Procedure</td><td><ol>
+      <li>Create a new notebook and add the team’s source pack.</li>
+      <li>Start an Audio Overview in English or Hindi first, as it takes a few minutes to generate.</li>
+      <li>While it is being made, ask three questions about the problem and open the citation for each answer.</li>
+      <li>Generate a mind map of the topic.</li>
+      <li>Listen to the first minute of the podcast and write the three most important facts on the team worksheet.</li>
+    </ol></td></tr>
+    <tr><td>Output</td><td>A research notebook, a mind map and an AI podcast on the team’s problem.</td></tr>
+    <tr><td>Concept learnt</td><td>Source-grounded AI, citations and fact-checking.</td></tr>
+    <tr class="wow"><td>Wow moment</td><td>Two AI voices discussing the team’s own topic as a podcast.</td></tr>
+  </table>
+</div>
+
+<div class="mission">
+  <div class="bar"><h3>Mission 3: Prompt Battle</h3><span class="meta">15 minutes</span></div>
+  <table>
+    <tr><td>Aim</td><td>To learn how to write good prompts through a friendly competition.</td></tr>
+    <tr><td>Tools</td><td>Gemini, Nano Banana (in the Gemini app), prompt card, class leaderboard</td></tr>
+    <tr><td>Procedure</td><td>Three rounds of about five minutes each. Teams write their prompts, the trainer runs the best few on the projector and the class votes.
+      <ul>
+        <li><b>Round 1, Explain It:</b> make Gemini explain photosynthesis so that a Class 3 child understands it, in exactly five lines.</li>
+        <li><b>Round 2, Format Master:</b> get a table of five Indian states with their capital, main language and one famous dish, using a single prompt.</li>
+        <li><b>Round 3, Recreate the Image:</b> a picture is shown on screen, and teams try to recreate it as closely as possible with Nano Banana.</li>
+      </ul></td></tr>
+    <tr><td>Output</td><td>Points on the leaderboard, and the R-T-C-F prompt card (Annexure B).</td></tr>
+    <tr><td>Concept learnt</td><td>Role, Task, Context and Format, and how clear instructions change the result.</td></tr>
+    <tr class="wow"><td>Wow moment</td><td>One extra line in a prompt completely changes what the AI produces.</td></tr>
+  </table>
+</div>
+
+<div class="mission">
+  <div class="bar"><h3>Mission 4: Build the App</h3><span class="meta">35 minutes</span></div>
+  <table>
+    <tr><td>Aim</td><td>To build and share a working web app for the team’s problem without writing code by hand.</td></tr>
+    <tr><td>Tools</td><td>Gemini with Canvas; Lovable, shown by the trainer as the advanced option</td></tr>
+    <tr><td>Procedure</td><td><ol>
+      <li>Fill in the app plan on the worksheet: name of the app, who it is for, and three features.</li>
+      <li>Turn on Canvas in Gemini and write the build prompt using the template on the prompt card.</li>
+      <li>Test the app in the preview and note one thing that needs fixing.</li>
+      <li>Improve the app in three rounds: add a feature, fix a problem, improve the design.</li>
+      <li>Add the footer “Made by Team ___ at the BGIEM AI Innovation Lab”.</li>
+      <li>Share the app, make a QR code for the link and open it on a phone.</li>
+    </ol></td></tr>
+    <tr><td>Output</td><td>A working web app, such as a quiz, a planner, a checklist or a calculator, with a shareable link.</td></tr>
+    <tr><td>Concept learnt</td><td>How AI writes code, why testing matters, and why logic is still needed.</td></tr>
+    <tr><td>Stretch challenge</td><td>Teams that finish early try to connect their Teachable Machine model to the app to make a “smart bin” page.</td></tr>
+    <tr class="wow"><td>Wow moment</td><td>An app built in half an hour, running on a teacher’s phone.</td></tr>
+  </table>
+</div>
+
+<div class="mission">
+  <div class="bar"><h3>Mission 5: Brand It</h3><span class="meta">20 minutes</span></div>
+  <table>
+    <tr><td>Aim</td><td>To design the identity and the pitch material for the team’s project.</td></tr>
+    <tr><td>Tools</td><td>Nano Banana (Gemini app), Gemini Canvas</td></tr>
+    <tr><td>Procedure</td><td><ol>
+      <li>Write the 8-second promo video prompt first and hand it to the co-trainer, who starts generating the video in Google Flow.</li>
+      <li>Create a logo for the app and improve it with two follow-up instructions.</li>
+      <li>Create an A4 poster with the app’s name, a tagline and space for the QR code.</li>
+      <li>Make a single pitch slide covering the problem, the solution, how it works and the team members.</li>
+    </ol></td></tr>
+    <tr><td>Output</td><td>Logo, poster, pitch slide and video prompt.</td></tr>
+    <tr><td>Concept learnt</td><td>Text-to-image generation, editing images with words, and labelling AI-made content.</td></tr>
+    <tr class="wow"><td>Wow moment</td><td>A professional-looking poster created in a few minutes.</td></tr>
+  </table>
+</div>
+
+<div class="mission">
+  <div class="bar"><h3>Mission 6: Automate It</h3><span class="meta">10 minutes</span></div>
+  <table>
+    <tr><td>Aim</td><td>To understand automation and AI agents.</td></tr>
+    <tr><td>Tools</td><td>Team worksheet; Google Workspace Studio (demonstration by the trainer)</td></tr>
+    <tr><td>Procedure</td><td><ol>
+      <li>Each team plans one automation for its project in the form Trigger → Steps → Result. For example: when someone fills our feedback form → save the answers in a Sheet → send a thank-you email.</li>
+      <li>Two teams read out their plans.</li>
+      <li>The trainer builds the best plan live in Google Workspace Studio and runs it in front of the class.</li>
+    </ol></td></tr>
+    <tr><td>Output</td><td>An automation plan on the worksheet.</td></tr>
+    <tr><td>Concept learnt</td><td>Triggers, steps, AI agents, and the need for human supervision.</td></tr>
+    <tr class="wow"><td>Wow moment</td><td>A teacher fills the form on a phone and the email appears on the screen a moment later.</td></tr>
+  </table>
+</div>
+
+<div class="mission">
+  <div class="bar"><h3>Demo Day and Closing</h3><span class="meta">35 minutes</span></div>
+  <table>
+    <tr><td>Aim</td><td>To present the project with confidence and to close the workshop with a commitment to safe use of AI.</td></tr>
+    <tr><td>Format</td><td>Each team gets two minutes: the problem, a live demo of the app on the projector, the poster, and the premiere of its AI promo video. The panel consists of the principal or teachers nominated by the school, and the BGIEM trainer.</td></tr>
+    <tr><td>Judging</td><td>Usefulness of the idea (25), working app (25), use of AI tools (20), design and poster (15), presentation (15). Total: 100 marks.</td></tr>
+    <tr><td>Awards</td><td>Best AI Innovation, Best App, Best Prompt Engineers (from the Mission 3 leaderboard), Best Design, and Teachers’ Choice.</td></tr>
+    <tr><td>Closing</td><td>All students read the AI Safety Pledge together, receive certificates and the AI Starter Kit, and pose for a group photograph.</td></tr>
+    <tr class="wow"><td>Wow moment</td><td>Each team sees its own AI-made promo video on the big screen for the first time.</td></tr>
+  </table>
+</div>
+
+<!-- ===================== 5. Problem cards ===================== -->
+<h2>5. Problem Statement Cards</h2>
+<p>Each team picks one card at the start of the workshop. The school is welcome to replace any card with a problem of its own.</p>
+<table>
+  <thead><tr><th style="width:11mm">No.</th><th style="width:72mm">Problem</th><th>Possible app idea</th></tr></thead>
+  <tbody>
+    <tr><td class="c">1</td><td>Waste is not segregated properly on the school campus</td><td>Smart bin guide that tells which waste goes into which bin, with a quiz</td></tr>
+    <tr><td class="c">2</td><td>Visitors to Bhedaghat and Dhuandhar Falls do not find information easily</td><td>Tourist guide with places to see, safety tips and a short quiz</td></tr>
+    <tr><td class="c">3</td><td>Exam stress and poor study planning</td><td>Study planner with a timetable maker and short breathing exercises</td></tr>
+    <tr><td class="c">4</td><td>Pollution in the Narmada and in local water bodies</td><td>Water-saving calculator and an awareness quiz</td></tr>
+    <tr><td class="c">5</td><td>Crowding and road safety at the school gate during dispersal</td><td>Road safety quiz and a safe-route checklist</td></tr>
+    <tr><td class="c">6</td><td>Students find it hard to locate books in the library</td><td>Book finder and recommendation app</td></tr>
+    <tr><td class="c">7</td><td>Healthy eating in the school canteen</td><td>Nutrition guide for common canteen items</td></tr>
+    <tr><td class="c">8</td><td>Little awareness of the heritage of Jabalpur, such as Madan Mahal Fort and Rani Durgavati</td><td>Heritage quiz and timeline app</td></tr>
+  </tbody>
+</table>
+<p class="small">Any facts used inside an app, such as timings or nutrition values, are checked by the team from a reliable source before the app is shared.</p>
+
+<!-- ===================== 6. Starter kit ===================== -->
+<h2>6. Take-home AI Starter Kit</h2>
+<p>Every team receives a digital folder, shared through a QR code, containing:</p>
+<ul>
+  <li>the link to its Teachable Machine model and to its web app;</li>
+  <li>its NotebookLM notebook and AI podcast;</li>
+  <li>its logo, poster, pitch slide and AI promo video;</li>
+  <li>e-certificates for every team member.</li>
+</ul>
+<p>Every student also receives a printed R-T-C-F prompt card, the AI Safety Pledge and the <b>30-Day AI Explorer Challenge</b>:</p>
+<table>
+  <thead><tr><th style="width:20mm">Week</th><th>Challenge</th></tr></thead>
+  <tbody>
+    <tr><td class="c">1</td><td>Retrain the waste model with three new classes (glass, metal and e-waste) and test it at home.</td></tr>
+    <tr><td class="c">2</td><td>Make a NotebookLM notebook for one school subject and revise one chapter with its quiz and flashcards.</td></tr>
+    <tr><td class="c">3</td><td>Add two new features to the team’s app and share it with the class.</td></tr>
+    <tr><td class="c">4</td><td>Teach one family member how to use AI safely, and write a short note on what you learnt.</td></tr>
+  </tbody>
+</table>
+
+<!-- ===================== 7. Continuation ===================== -->
+<h2>7. After the Workshop: Continuation Plan</h2>
+<h3>7.1 Teacher Handover</h3>
+<p>A 30-minute session for the school’s computer teachers, held on the day of the workshop or a day before. Teachers receive the lab manual (the mission sheets in Section 4), the account setup guide, the problem cards and the worksheets, so that they can repeat the practicals with other classes.</p>
+<h3>7.2 AI Explorers Club (Four Weeks)</h3>
+<p>One 60-minute lab session every week, run by the school’s computer teacher with a BGIEM mentor:</p>
+<table>
+  <thead><tr><th style="width:20mm">Week</th><th style="width:52mm">Theme</th><th>Lab work</th></tr></thead>
+  <tbody>
+    <tr><td class="c">1</td><td>Better data, better models</td><td>Sound and pose projects in Teachable Machine; improving model accuracy</td></tr>
+    <tr><td class="c">2</td><td>AI for exams</td><td>A NotebookLM study notebook for each subject, with quizzes and flashcards</td></tr>
+    <tr><td class="c">3</td><td>App upgrade</td><td>New features, testing with classmates, and publishing the final version</td></tr>
+    <tr><td class="c">4</td><td>Showcase preparation</td><td>Final pitch, poster and video for the inter-school showcase</td></tr>
+  </tbody>
+</table>
+<h3>7.3 Inter-school AI Showcase at BGIEM</h3>
+<p>The best teams from both schools present their projects at the BGIEM campus, visit the Institute’s engineering labs and receive awards. This gives students a real audience for their work and a first look at engineering education.</p>
+<h3>7.4 Mentoring</h3>
+<p>Follow-up questions are handled through a Google Classroom set up and managed by the school, with BGIEM mentors added as guest teachers.</p>
+
+<!-- ===================== 8. Preparation ===================== -->
+<h2>8. Preparation and Lab Requirements</h2>
+<table>
+  <thead><tr><th style="width:30mm">Item</th><th>Requirement</th><th style="width:28mm">Responsibility</th></tr></thead>
+  <tbody>
+    <tr><td><b>Computer lab</b></td><td>One computer per team (10 to 12 computers for 40 students) with an updated Chrome browser</td><td>School</td></tr>
+    <tr><td><b>Webcams</b></td><td>At least one webcam per team; BGIEM brings six spare USB webcams</td><td>School and BGIEM</td></tr>
+    <tr><td><b>Internet</b></td><td>Stable connection; 50 Mbps or more is recommended for 40 users</td><td>School</td></tr>
+    <tr><td><b>Website access</b></td><td>The following sites unblocked in the school firewall: quickdraw.withgoogle.com, teachablemachine.withgoogle.com, gemini.google.com, notebooklm.google.com, studio.workspace.google.com and labs.google</td><td>School IT team</td></tr>
+    <tr><td><b>Accounts</b></td><td>School Google Workspace for Education accounts with Gemini and NotebookLM turned on by the school’s admin; otherwise, team accounts managed by BGIEM</td><td>School and BGIEM</td></tr>
+    <tr><td><b>Display and sound</b></td><td>Projector, speakers and a microphone in the lab</td><td>School</td></tr>
+    <tr><td><b>Materials</b></td><td>Waste items for Mission 1, problem cards, source packs, team worksheets, prompt cards, certificates and prizes</td><td>BGIEM</td></tr>
+    <tr><td><b>Backup</b></td><td>Mobile hotspot, screen recordings of each mission, and sample outputs ready in case a tool is slow</td><td>BGIEM</td></tr>
+  </tbody>
+</table>
+<h3>Preparation timeline</h3>
+<ul>
+  <li><b>One week before:</b> confirm the date, the batch and the number of students with the school; share the website list with the school’s IT team.</li>
+  <li><b>Three to four days before:</b> visit the lab, test every website and account on two computers, and check the webcams.</li>
+  <li><b>Two days before:</b> receive the student list and form balanced teams; print worksheets, cards and certificates.</li>
+  <li><b>On the day:</b> reach one hour early, log in on all computers, and test the projector and sound.</li>
+</ul>
+
+<!-- ===================== 9. Safety ===================== -->
+<h2>9. Safety and Responsible Use</h2>
+<ul>
+  <li>No student creates a personal account during the workshop; only school-managed or BGIEM-managed logins are used.</li>
+  <li>No faces or personal data are used to train models. Mission 1 uses only objects.</li>
+  <li>Photographs of students are taken only as per the school’s permission policy.</li>
+  <li>Every AI-made image, poster and video is labelled as AI-generated.</li>
+  <li>Facts used in student apps are checked from reliable sources before the apps are shared.</li>
+  <li>The workshop ends with the AI Safety Pledge: check before you trust, keep personal information private, use AI to learn and not to copy, respect others, and follow age rules.</li>
+</ul>
+
+<!-- ===================== 10. Two-hour version ===================== -->
+<h2>10. Two-hour Version</h2>
+<p>If the school can give only two hours of lab time, the workshop runs as follows. The Prompt Battle is dropped and its tips are given during Mission 4.</p>
+<table>
+  <thead><tr><th style="width:28mm">Time</th><th>Activity</th></tr></thead>
+  <tbody>
+    <tr><td class="time">0:00–0:05</td><td>Opening and team formation</td></tr>
+    <tr><td class="time">0:05–0:20</td><td>Mission 1: Teach a Machine</td></tr>
+    <tr><td class="time">0:20–0:35</td><td>Mission 2: Research Like a Scientist (mind map and podcast)</td></tr>
+    <tr><td class="time">0:35–1:05</td><td>Mission 4: Build the App</td></tr>
+    <tr><td class="time">1:05–1:20</td><td>Mission 5: Brand It (logo and poster)</td></tr>
+    <tr><td class="time">1:20–1:25</td><td>Mission 6: Automation demonstration by the trainer</td></tr>
+    <tr><td class="time">1:25–1:50</td><td>Demo Day: 90-second pitch per team, with promo videos</td></tr>
+    <tr><td class="time">1:50–2:00</td><td>AI Safety Pledge, certificates and group photograph</td></tr>
+  </tbody>
+</table>
+
+<div class="signoff">
+  <div><b>Mr. Deepak Vishwakarma</b><span class="role">Trainer, BGIEM (Prepared by)</span>Date: 05/10/2026</div>
+  <div><b>Dr. Niharika Yadav</b><span class="role">Deputy Director, BGIEM (Submitted to)</span>&nbsp;</div>
+</div>
+
+<!-- ===================== Annexure A: Worksheet ===================== -->
+<h2 class="page-break">Annexure A: Team Mission Worksheet</h2>
+<p class="small">One copy per team. Filled in during the workshop and kept by the team.</p>
+
+<div class="ws-grid">
+  <div class="ws-box"><div class="q">Team name</div><div class="line"></div></div>
+  <div class="ws-box"><div class="q">Problem card number and title</div><div class="line"></div></div>
+</div>
+<div class="ws-box" style="margin-top:3mm"><div class="q">Team members</div><div class="line"></div></div>
+
+<div class="ws-box"><div class="q">Mission 1: Our model’s accuracy before and after the bias test</div><div class="line"></div><div class="line"></div></div>
+<div class="ws-box"><div class="q">Mission 2: Three important facts about our problem (with source)</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+<div class="ws-box"><div class="q">Mission 4: Our app plan (name, users and three features)</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+<div class="ws-box"><div class="q">Mission 5: Our promo video prompt (subject, action, place, camera, light, sound)</div><div class="line"></div><div class="line"></div></div>
+<div class="ws-box"><div class="q">Mission 6: Our automation (Trigger → Steps → Result)</div><div class="line"></div><div class="line"></div></div>
+<div class="ws-box"><div class="q">Links: model, app and starter-kit folder</div><div class="line"></div><div class="line"></div></div>
+
+<!-- ===================== Annexure B: Prompt card ===================== -->
+<h2 class="page-break">Annexure B: Prompt Card</h2>
+<p class="small">Printed for every student. The R-T-C-F method and ready templates for the missions.</p>
+<table>
+  <thead><tr><th style="width:26mm">Letter</th><th style="width:40mm">Meaning</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td><b>R</b>, Role</td><td>Who the AI should act as</td><td>“You are my science teacher.”</td></tr>
+    <tr><td><b>T</b>, Task</td><td>What exactly you want</td><td>“Explain photosynthesis.”</td></tr>
+    <tr><td><b>C</b>, Context</td><td>Level, purpose and details</td><td>“I am in Class 8 and have a test tomorrow.”</td></tr>
+    <tr><td><b>F</b>, Format</td><td>How the answer should look</td><td>“Five short points and one daily-life example.”</td></tr>
+  </tbody>
+</table>
+
+<div class="prompt"><b>App template (Mission 4)</b>Build a simple, mobile-friendly web app called [app name] for [who it is for]. It should help them [solve which problem]. Include these features: 1) [feature], 2) [feature], 3) [feature]. Use bright colours, large buttons and simple English. Add a footer: “Made by Team [name] at the BGIEM AI Innovation Lab”.</div>
+<div class="prompt"><b>Logo template (Mission 5)</b>Design a simple flat logo for an app called [app name] that helps [purpose]. Use [two colours] on a plain white background, with no extra text.</div>
+<div class="prompt"><b>Poster template (Mission 5)</b>Create an A4 portrait poster for [app name]. Headline: “[tagline]”. Show [a scene related to the problem]. Leave an empty square at the bottom right for a QR code.</div>
+<div class="prompt"><b>Video template (Mission 5)</b>An 8-second shot of [subject] [doing what] at [place]. The camera [moves how]. [Lighting]. Sound of [sound].</div>
+<div class="prompt"><b>Follow-up prompts that always help</b>“Make it simpler.” “Add one more feature: …” “Something is not working: … Please fix it.” “Make the design more colourful and the text larger.” “Explain this in Hindi.”</div>
+
+</body>
+</html>
